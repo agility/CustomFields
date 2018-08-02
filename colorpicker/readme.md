@@ -1,8 +1,8 @@
 ﻿# Color Picker
 This custom field for Agility allows editors to 'pick' a color from the color wheel and save the value of the color as an RBGA or HEX value.
 
-![Color Picker Open](/screenshots/colorpicker-open.png?raw=true "Color Picker Open")
-![Color Picker Open](/screenshots/colorpicker-closed.png?raw=true "Color Picker Closed")
+![Color Picker Open](screenshots/colorpicker-open.png?raw=true "Color Picker Open")
+![Color Picker Open](screenshots/colorpicker-closed.png?raw=true "Color Picker Closed")
 
 ## Installation Instructions
 
