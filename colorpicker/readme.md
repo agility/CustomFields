@@ -17,9 +17,9 @@ This custom field for Agility allows editors to 'pick' a color from the color wh
 5. Upload or create an Inline Code file for /html/colorpicker-template.html and make note of the absolute URL or inline code reference name.
 
 6. Open the JS file /js/colorpicker-init.js and replace the values referencing dependency sources.
- - Replace the values for Template to the absolute URL of the colorpicker-template.html or the inline code reference name.
- - Replace the values for DependenciesJS.src to the absolute URLs or inline code reference names.
- - Replace the values for DependenciesCSS.src to the absolute URLs or inline code reference names.
+	 - Replace the values for Template to the absolute URL of the colorpicker-template.html or the inline code reference name.
+	 - Replace the values for DependenciesJS.src to the absolute URLs or inline code reference names.
+	 - Replace the values for DependenciesCSS.src to the absolute URLs or inline code reference names.
  
 7. Copy the entire contents of the colorpicker-init.js file and paste into your existing Input Form Customization JS file. 
 If you don't have one already, save the contents of the file into a new JS file and upload this to Media & Documents, record the absolute URL and set the value in the CMS under Settings > Development Framework > Input Form Customization. Alternatively, you may also save this as an Inline Code file and reference it as your Input Form Customization.
