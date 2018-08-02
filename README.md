@@ -1,2 +1,2 @@
 # CustomFields
-![Color Picker Open](/screenshots/colorpicker-open.png?raw=true "Color Picker Open")
+![Color Picker Open](/colorpicker/screenshots/colorpicker-open.png?raw=true "Color Picker Open")
