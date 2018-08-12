@@ -1,6 +1,6 @@
 # Agility Custom Fields
 
-This repo serves as an example of how to build custom field types for Agility CMS.
+[View in Help Center](https://help.agilitycms.com/hc/en-us/articles/360013157631)
 
 - Build your own re-usable field types
 - Compatible with any Agility instance, module or content input form
