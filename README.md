@@ -39,9 +39,11 @@ Custom Script URL:
 - Use your own IDE
 
 #### Input Form Customization File Format
-This file is comprised of one or more custom field function declarations and its registration.
+This file is comprised of one or more custom field function declarations and its registration. 
 
-Custom Field Function Declaration
+The Content Manager uses [KnockoutJS](http://knockoutjs.com/) for declaritive bindings, automatic ui refresh, dependancy tracking, and templating. While you don't need to use knockout to build a custom field, you will still likely interface with Content Manager knockout objects such as *contentItem* and *fieldBinding*. It is recommended to have a basic understanding of how Knockout observables work.
+
+**Boilerplate Custom Field Function Declaration:**
 ```javascript
 var CustomFieldFunctionDeclaration = function () {
     var self = this;
@@ -98,6 +100,9 @@ var CustomFieldFunctionDeclaration = function () {
 }
 ```
 
-
+**Register the Custom Field:**
+```javascript
+ContentManager.Global.CustomInputFormFields.push(new CustomFieldFunctionDeclaration());
+```
 
 
