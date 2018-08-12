@@ -1,0 +1,8 @@
+<div class="friendly-url-field" data-bind="css: { 'input-group': contentID() > 0 }">
+	<input type="text" class="form-control" data-bind="value: value" />
+	<!--ko if: contentID() > 0 -->
+	<span class="input-group-btn">
+        <button class="btn btn-primary" data-bind="click: regenerateUrl">Re-Generate URL</button>
+    </span>
+	<!-- /ko -->
+</div>
