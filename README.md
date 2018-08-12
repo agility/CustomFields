@@ -15,7 +15,7 @@ This repo serves as an example of how to build custom field types for Agility CM
 2. [Color Picker field](colorpicker) - Allows editors to select a color from a color-picker and save the value as rgba/hex 
 
 ## How it Works
-On load, the Content Manager will check for the existence of a a single **Input Form Customization** JS file. If one has been set, the JS will be executed and consequently register each Custom Field declaration you have within the file. This will tell the Content Manager which custom fields are available for use, and allow you add a custom field to any content/module definition.
+On load, the **Content Manager** will check for the existence of a a single **Input Form Customization JS file**. If one has been set, the JS will be executed and consequently register each Custom Field declaration you have within the file. This will tell the **Content Manager** which custom fields are available for use, and allow you add a custom field to any content/module definition.
 
 When a custom field is rendered within a content/module input form in the browser, your custom code is executed. A custom field typically includes your registration JS function (including the code that is executed when the field is rendered) and a reference to an HTML file representing your presentation layer.
 
@@ -28,12 +28,12 @@ You **must** have an **Input Form Customization** JS file referenced in the Cont
 
 First thing you need to decide is whether your JS file will be stored and managed within Agility (via Inline Code) or hosted externally.
 
-Inline Code:
+**Inline Code:**
 - Built-in code editor within the browser
 - Code stored in high availability Agility CDN over a dynamic URL
 - Has version history
 
-Custom Script URL:
+**Custom Script URL:**
 - Can be deployed anywhere
 - Easier to intergrate into source control and CI/D pipelines
 - Use your own IDE
@@ -41,7 +41,7 @@ Custom Script URL:
 #### Input Form Customization File Format
 This file is comprised of one or more custom field function declarations and its registration. 
 
-The Content Manager uses [KnockoutJS](http://knockoutjs.com/) for declaritive bindings, automatic ui refresh, dependancy tracking, and templating. While you don't need to use knockout to build a custom field, you will still likely interface with Content Manager knockout observable objects such as *contentItem* and *fieldBinding*. It is recommended to have a basic understanding of how Knockout observables work.
+The **Content Manager** uses [KnockoutJS](http://knockoutjs.com/) for declaritive bindings, automatic ui refresh, dependancy tracking, and templating. While you don't need to use KnockoutJS to build a custom field, you will still likely interface with **Content Manager** KnockoutJS observable objects such as *contentItem* and *fieldBinding*. It is recommended to have a basic understanding of how Knockout observables work.
 
 **Boilerplate Custom Field Function Declaration:**
 ```javascript
@@ -113,7 +113,7 @@ ContentManager.Global.CustomInputFormFields.push(new CustomFieldFunctionDeclarat
 
 
 ### Verifying your Input Form Customization JS File
-1. After you've set your Input Form Customization JS file and added a custom field declaration funciton and registration, you will need to refresh the Content Manager to refresh the loaded JS file. 
+1. After you've set your **Input Form Customization JS file** and added a custom field declaration funciton and registration, you will need to refresh the Content Manager to refresh the loaded JS file. 
 
 2. Verify your custom input field has been registered by going to **Settings > Content Definitions (or Module Definitions)** and create or update an existing definition. Add a new field, and select the **Custom Field** tab. If successful, you should see your custom field listed under **Field Type**.
 
@@ -131,7 +131,7 @@ There are several ways to test new/changes to a custom field type.
 ### Advanced Testing Development Mode
 Special care should be taken when making code changes to an existing custom field type that is being used across numerous types of content. Creating **new versions** of custom fields and *test* definitions can be cumbersome at times. 
 
-To address this, the **Content Manager** has a **Development Mode** that can be turned on and off by a developer. Turning **Development Mode** *ON* will set *your browser session only* to pull-in a **Dev Mode Input Form Customization** JS file. This allows you to create a copy of your current **Input Form Customization** JS file, specify it as your **Development Mode** JS file and make any required changes and test within the browser. 
+To address this, the **Content Manager** has a **Development Mode** that can be turned on and off by a developer. Turning **Development Mode** *ON* will set *your browser session only* to pull-in a **Dev Mode Input Form Customization JS file** . This allows you to create a copy of your current **Input Form Customization JS file**, specify it as your **Development Mode** JS file and make any required changes and test within the browser. 
 
 It is important to note that only your browser session will pull-in this **Development Mode** JS file. When development is complete, you can simply replace the live file with your dev file.
 
