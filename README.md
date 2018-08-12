@@ -86,11 +86,12 @@ var CustomFieldFunctionDeclaration = function () {
         ///     <field name="readonly" type="boolean">Represents if this field should be readonly or not.</field>
         /// </param>
 
-        this.value = options.fieldBinding;
-        this.contentID = options.contentItem.ContentID;
-        this.attrBinding = {};
+        this.value = options.fieldBinding; //reference the field KO observable value
+        this.contentID = options.contentItem.ContentID; //set the contentID of the current loaded item (NewItem = -1)
+        this.attrBinding = {}; //pass any custom attributes to the input field
 
         if (options.fieldSetting.Settings.Required === "True") {
+            //if this field is marked as required, add a required parsley attribute
             this.attrBinding['data-parsley-required'] = true;
         }
 
