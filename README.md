@@ -149,7 +149,17 @@ if(ContentManager.Developer.DevMode()) {
 1. In the **Content Manager** go to **Settings > Development Framework**
 2. Click on **Turn on Development Mode**
 3. The application will refresh
+4. An *pylon* icon will now appear in the status bar showing that you are in **Development Mdoe**
+![cms development mode](screenshots/cms development mode.png?raw=true "Development Mode")
 
+#### Turning OFF Development Mode
+1. Click on the *pylon* in the status bar
+2. Confirm and click *OK* on the dialogue window
+
+OR
+
+1. Go to **Settings > Development Framework**
+2. Click *Turn off Development Mode*
 
 
 
