@@ -24,7 +24,7 @@ When a custom field is rendered within a content/module input form in the browse
 ### Register an Input Form Customization JS File
 You **must** have an **Input Form Customization** JS file referenced in the Content Manager. This can be found in **Settings > Development Framework**.
 
-![custom field input form customization](screenshots/custom field input form customization.png?raw=true "Input Form Customization File")
+![custom field input form customization](screenshots/custom-field-input-form-customization.png?raw=true "Input Form Customization File")
 
 First thing you need to decide is whether your JS file will be stored and managed within Agility (via Inline Code) or hosted externally.
 
@@ -117,7 +117,7 @@ ContentManager.Global.CustomInputFormFields.push(new CustomFieldFunctionDeclarat
 
 2. Verify your custom input field has been registered by going to **Settings > Content Definitions (or Module Definitions)** and create or update an existing definition. Add a new field, and select the **Custom Field** tab. If successful, you should see your custom field listed under **Field Type**.
 
-![custom field options](screenshots/custom field options.png?raw=true "Custom Field Options")
+![custom field options](screenshots/custom-field-options.png?raw=true "Custom Field Options")
 
 ## Testing
 There are several ways to test new/changes to a custom field type.
@@ -150,7 +150,8 @@ if(ContentManager.Developer.DevMode()) {
 2. Click on **Turn on Development Mode**
 3. The application will refresh
 4. An *pylon* icon will now appear in the status bar showing that you are in **Development Mdoe**
-![cms development mode](screenshots/cms development mode.png?raw=true "Development Mode")
+
+![cms development mode](screenshots/cms-development-mode.png?raw=true "Development Mode")
 
 #### Turning OFF Development Mode
 1. Click on the *pylon* in the status bar
