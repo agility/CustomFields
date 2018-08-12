@@ -46,12 +46,11 @@ The Content Manager uses [KnockoutJS](http://knockoutjs.com/) for declaritive bi
 **Boilerplate Custom Field Function Declaration:**
 ```javascript
 var CustomFieldFunctionDeclaration = function () {
-    var self = this;
 
-    self.Label = "Sample Custom Field"; //[Requried] the name of the custom field as will appear in content/module def form builder
-    self.ReferenceName = "SampleCustomField"; //[Required] the reference name of the custom field for internal purposes
+    this.Label = "Sample Custom Field"; //[Requried] the name of the custom field as will appear in content/module def form builder
+    this.ReferenceName = "SampleCustomField"; //[Required] the reference name of the custom field for internal purposes
 
-    self.Render = function (options) {
+    this.Render = function (options) {
         /// <summary>[Optional] This function is called whenever the field is rendered in an input form - this includes after the item has been saved and the field is re-rendered.</summary>
         /// <param name="options" type="Object">
         ///     <field name="$elem" type="jQueryElem">The .field-row jQuery Dom Element.</field>
@@ -63,21 +62,21 @@ var CustomFieldFunctionDeclaration = function () {
     }
 
     /// <field name="Template" type="String">[Optional] The absoulte URL to an HTML template that represents your custom field, or the referencename to an Inline Code file. Your ViewModel will be automatically bound to this template.</field>
-    self.Template = 'https://domain.com/html/somefile.html';
+    this.Template = 'https://domain.com/html/somefile.html';
 
     /// <field name="DepenenciesJS"> type="Array">[Optional] The Javscript dependencies that must be loaded before your ViewModel is bound. They will be loaded in the order you specify.</field>
-    self.DependenciesJS = [
+    this.DependenciesJS = [
         { id: 'somejs-reference-name', src: 'https://domain.com/js/somefile.js' } //src is an absolute URL to a JS file, or the referencename to an Inline Code file.
     ];
 
     /// <field name="DepenenciesCSS" type="Array">[Optional] The CSS dependencies that must be loaded before your ViewModel is bound. They will be loaded in the order you specify.</field>
-    self.DependenciesCSS = [
+    this.DependenciesCSS = [
         { id: 'somecss-reference-name', src: 'https://domain.com/css/somefile.css' } //src is an absolute URL to a CSS file, or the referencename to an Inline Code file.
     ];
 
 
     /// <field name="ViewModel" type="KO ViewModel">The KO ViewModel that will be binded to your HTML template</field>
-    self.ViewModel = function (options) {
+    this.ViewModel = function (options) {
         /// <summary>[Optional] The KO ViewModel that will be binded to your HTML template.</summary>
         /// <param name="options" type="Object">
         ///     <field name="$elem" type="jQueryElem">The .field-row jQuery Dom Element.</field>
@@ -87,13 +86,12 @@ var CustomFieldFunctionDeclaration = function () {
         ///     <field name="readonly" type="boolean">Represents if this field should be readonly or not.</field>
         /// </param>
 
-        var self = this;
-        self.value = options.fieldBinding;
-        self.contentID = options.contentItem.ContentID;
-        self.attrBinding = {};
+        this.value = options.fieldBinding;
+        this.contentID = options.contentItem.ContentID;
+        this.attrBinding = {};
 
         if (options.fieldSetting.Settings.Required === "True") {
-            self.attrBinding['data-parsley-required'] = true;
+            this.attrBinding['data-parsley-required'] = true;
         }
 
     }
