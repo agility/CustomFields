@@ -112,3 +112,13 @@ ContentManager.Global.CustomInputFormFields.push(new CustomFieldFunctionDeclarat
 ```
 
 
+### Verifying your Input Form Customization JS File
+1. After you've set your Input Form Customization JS file and added a custom field declaration funciton and registration, you will need to refresh the Content Manager to refresh the loaded JS file. 
+
+2. Verify your custom input field has been registered by going to **Settings > Content Definitions (or Module Definitions)** and create or update an existing definition. Add a new field, and select the **Custom Field** tab. If successful, you should see your custom field listed under **Field Type**.
+
+[IMAGE]
+
+## Testing
+
+
