@@ -8,21 +8,17 @@ This custom field for Agility allows editors to 'pick' a color from the color wh
 
 1. Upload the assets located in /img/ to Media & Documents, and make note of the absolute URLs.
    
-2. Open the CSS file /css/colorpicker.css and update the background images being referenced, using the URLs you just uploaded. Then, proceed to Media & Documents, or create an Inline Code file containing the contents of the file.
+2. Open the HTML file /html/colorpicker-template.html and update the background images being referenced in the inline css, using the URLs you just uploaded. Then, proceed to Media & Documents and upload the HTML file, or create an Inline Code file containing the contents of the file.
  
-3. Upload or create an Inline Code file for /js/colorpicker-jquery-plugin.js and make note of the absolute URL or inline code reference name.
+3. Upload (to Media & Documents) or create an Inline Code file for /js/colorpicker-jquery-plugin.js and make note of the absolute URL or inline code reference name.
  
-4. Upload or create an Inline Code file for /js/colorpicker-ko-binding.js and make note of the absolute URL or inline code reference name.
 
-5. Upload or create an Inline Code file for /html/colorpicker-template.html and make note of the absolute URL or inline code reference name.
-
-6. Open the JS file /js/colorpicker-init.js and replace the values referencing dependency sources.
+4. Open the JS file /js/colorpicker-init.js and replace the values referencing dependency sources.
 	 - Replace the values for Template to the absolute URL of the colorpicker-template.html or the inline code reference name.
-	 - Replace the values for DependenciesJS.src to the absolute URLs or inline code reference names.
-	 - Replace the values for DependenciesCSS.src to the absolute URLs or inline code reference names.
+	 - Replace the values for DependenciesJS.src to the absolute URLs or inline code reference name for your /js/colorpicker-plugin.js
  
-7. Copy the entire contents of the colorpicker-init.js file and paste into your existing Input Form Customization JS file. 
+5. Copy the entire contents of the colorpicker-init.js file and paste into your existing Input Form Customization JS file. 
 If you don't have one already, save the contents of the file into a new JS file and upload this to Media & Documents, record the absolute URL and set the value in the CMS under Settings > Development Framework > Input Form Customization. Alternatively, you may also save this as an Inline Code file and reference it as your Input Form Customization.
 
-8. If done successfully, you should see your custom field type available as an option within Module/Content definitions form builder.
+6. If done successfully, you should see your custom field type available as an option within Module/Content definitions form builder.
 
