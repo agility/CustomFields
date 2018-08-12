@@ -120,5 +120,36 @@ ContentManager.Global.CustomInputFormFields.push(new CustomFieldFunctionDeclarat
 ![custom field options](screenshots/custom field options.png?raw=true "Custom Field Options")
 
 ## Testing
+There are several ways to test new/changes to a custom field type.
+
+1. For new custom fields, create a test environment for your field by creating a *test* content/module definition that you can use just for testing. If it works there, it will work in ANY definition.
+
+2. For updates to existing custom fields, create a **new version** of the custom field type in your Input Form Custimization file (i.e. "Sample Field v2") and test in a *test* content/module definition.
+
+3. If making updates to an existing custom field, and creating test definitions is not feasible then you can make use of a **Development Mode** within the **Content Manager** to test changes on the existing definition forms without affecting the forms for any editors.
+
+### Advanced Testing Development Mode
+Special care should be taken when making code changes to an existing custom field type that is being used across numerous types of content. Creating **new versions** of custom fields and *test* definitions can be cumbersome at times. 
+
+To address this, the **Content Manager** has a **Development Mode** that can be turned on and off by a developer. Turning **Development Mode** *ON* will set *your browser session only* to pull-in a **Dev Mode Input Form Customization** JS file. This allows you to create a copy of your current **Input Form Customization** JS file, specify it as your **Development Mode** JS file and make any required changes and test within the browser. 
+
+It is important to note that only your browser session will pull-in this **Development Mode** JS file. When development is complete, you can simply replace the live file with your dev file.
+
+#### Detecting Development Mode in JS
+In your custom field code, you may want to have conditional logic when running in **Development Mode**. An example of this could be changing some variable values such as API endpoints, or other references for testing purposes.
+
+**Detect Development Mode:**
+```javacript
+if(ContentManager.Developer.DevMode()) {
+    //do something 
+}
+```
+
+#### Turning ON Development Mode
+1. In the **Content Manager** go to **Settings > Development Framework**
+2. Click on **Turn on Development Mode**
+3. The application will refresh
+
+
 
 
