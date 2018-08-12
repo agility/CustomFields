@@ -12,7 +12,7 @@ This repo serves as an example of how to build custom field types for Agility CM
 ## Examples
 1. [Friendly URL field](friendly-url) - Auto-generates a friendly URL value based off another text field
 
-2. [Color Picker field](color-picker) - Allows editors to select a color from a color-picker and save the value as rgba/hex 
+2. [Color Picker field](colorpicker) - Allows editors to select a color from a color-picker and save the value as rgba/hex 
 
 ## How it Works
 On load, the Content Manager will check for the existence of a a single **Input Form Customization** JS file. If one has been set, the JS will be executed and consequently register each Custom Field declaration you have within the file. This will tell the Content Manager which custom fields are available for use, and allow you add a custom field to any content/module definition.
@@ -97,6 +97,13 @@ var CustomFieldFunctionDeclaration = function () {
 
     }
 }
+```
+
+**Boilerplate HTML Template:**
+```html
+<div class="sample-field">
+    <input type="text" class="form-control" data-bind="value: value, attr: attrBinding" />
+</div>
 ```
 
 **Register the Custom Field:**
