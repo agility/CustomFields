@@ -1,0 +1,146 @@
+<div class="agility-field-panel widen-image-field">
+
+	<style>
+		.widen-image-field .widen-logo {
+			height: 30px;
+			vertical-align: middle;
+			margin-right: 0.5rem;
+		}
+
+		.widen-image-field .widen-image-field__label {
+			font-weight: bold;
+		}
+
+		.widen-image-field .widen-image-field__label p {
+			margin-bottom: 0.3rem;
+		}
+
+		.widen-image-field .widen-image-field__input {
+			margin-bottom: 1.5rem;
+			width: 100%;
+		}
+
+
+		.widen-image-field .widen-image-field__img-preview {
+			display: block;
+			width: 100%;
+		}
+
+		 .widen-image-field .widen-image-field .widen-panel-body-content {
+			position: relative;
+			margin: 0!important;
+			height: 100%;
+		}
+
+		.widen-image-field .widen-iframe-wrapper, .widen-iframe-wrapper iframe {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+		}
+
+		.widen-image-field textarea[readonly] {
+			background-color: #f1f1f1;
+		}
+
+		.widen-image-field .panel-footer .control-label {
+			display: inline-block!important;
+		}
+	</style>
+
+
+	<div class="panel-heading">
+		
+		<!-- Required field hack -->
+		<input style="position: absolute; left: -99000px" type="text" data-bind="attr: attrBinding, value: valueAsString" />
+
+		<div class="pull-right">
+			<!-- ko ifnot: value() == null -->
+			<button class="browse btn btn-primary" data-bind="click: methods.removeAsset">Remove Asset</button>
+			<!-- /ko -->
+			<button class="browse btn btn-primary" data-bind="click: methods.openFlyout">Select Asset</button>
+		</div>
+
+		<div class="panel-title">
+			<img class="widen-logo" src="https://cdn.agilitycms.com/content-manager/custom-field-shared-assets/widen-asset-selector/widen_logo.png">
+			<!-- ko if: value() == null -->
+			<span>No Widen asset selected...</span>
+			<!-- /ko -->
+			<!-- ko ifnot: value() == null -->
+			<span style="font-weight: bold" data-bind="text: value().filename"></span>: <span data-bind="text: value().embed_name"></span>
+			<!-- /ko -->
+		</div>
+
+
+	</div>
+	
+	<!-- ko if: value() != null -->
+	<div class="panel-body">
+
+		
+
+		<div class="widen-image-field__img col-md-3">
+			<div class="widen-image-field__label">
+				<p>Image Preview:</p>
+			</div>
+			<!-- ko ifnot: value().embed_link() != null && value().embed_link().length > 0 -->
+			<p>Insert a valid image URL.</p>
+			<!-- /ko -->
+			<!-- ko if: value().embed_link() != null && value().embed_link().length > 0 -->
+			<img class="widen-image-field__img-preview" data-bind="attr: {src: value().embed_link }, checkImage: null, css: { hidden: error() }" />
+			<!-- /ko -->
+
+		</div>
+
+		<div class="col-md-9">
+			<div class="widen-image-field__label">
+				<p>Widen Image URL:</p>
+			</div>
+			<textarea readonly style="width: 100%; height: 50px;" data-bind="value: value().embed_link, attr: attrBinding"></textarea>
+
+			<div class="widen-image-field__label">
+				<p>Embed Code:</p>
+			</div>
+
+			<textarea readonly style="width: 100%; height: 75px;" data-bind="value: value().embed_code"></textarea>
+		</div>
+
+	</div>
+
+	<div class="panel-footer">
+		<div class="pull-right">
+			<label class="control-label">External Id:</label>
+			<span data-bind="text: value().external_id"></span>
+		</div>
+		<div>
+			<label class="control-label">Id:</label>
+			<span data-bind="text: value().id"></span>
+		</div>
+	</div>
+	<!-- /ko -->
+
+	<script id="widen-flyout" type="text/html">
+		<div class="agility-right-panel panel panel-default extra-extra-wide-panel" data-bind="agilityRightPanel:options">
+			<div class="panel-heading">
+				<button aria-hidden="true" class="close" type="button">&times;</button>
+				<span>Widen Asset Selector</span>
+			</div>
+
+			<div class="panel-body full-height">
+				<div class="nano-content panel-body-content widen-panel-body-content">
+
+					<div data-bind="visible: item().loading, agilityLoadingItem:null"></div>
+					
+					
+					<!-- ko if: item().iFrameUrl() != null -->
+					<div class="widen-iframe-wrapper">
+						<iframe style="width: 100%; height: 100%; border: none;" data-bind="attr: { src: item().iFrameUrl }, widenIFrame"/>
+					</div>
+					<!-- /ko -->
+					
+
+				</div>
+			</div>
+		</div>
+	</script>
+</div>
