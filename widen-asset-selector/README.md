@@ -67,6 +67,6 @@ self.ViewModel = function (options) {
 ```
 
 4. Copy the entire contents of the *widen-asset-selector-init.js file* and paste into your existing Input Form Customization JS file. 
-If you don't have one already, save the contents of the file into a new JS file and upload this to Media & Documents, record the absolute URL and set the value in the CMS under Settings > Development Framework > Input Form Customization. Alternatively, you may also save this as an Inline Code file and reference it as your Input Form Customization.
+If you don't have one already, save the contents of the file into a new JS file and upload this to Media & Documents, record the absolute URL and set the value in the CMS under **Settings > Development Framework > Input Form Customization**. Alternatively, you may also save this as an Inline Code file and reference it as your Input Form Customization.
 
 5. If done successfully, you should see your custom field type available as an option within Module/Content definitions form builder.
