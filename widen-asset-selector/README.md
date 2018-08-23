@@ -1,5 +1,5 @@
 # Widen Asset Selector
-This custom field for Agility allows an editor to browse assets from their [Widen Digital Asset Management System] (https://www.widen.com/), select them, and save the metadada for the asset. All metadata is saved as a JSON string.
+This custom field for Agility allows an editor to browse assets from their [Widen Digital Asset Management System](https://www.widen.com/), select them, and save the metadada for the asset. All metadata is saved as a JSON string.
 
 In order to use this field you must have an API *access token* from widen. 
 
