@@ -29,22 +29,23 @@ This uses the Widen [Instance Search Connector](https://widenv2.docs.apiary.io/#
 }
 ```
 
-**Empty Field**
+## Empty Field
 ![widen-asset-selector-new](screenshots/widen-asset-selector-new.png?raw=true "New")
 
-**Search for Assets**
+## Search for Assets
+
 ![widen-asset-selector-search](screenshots/widen-asset-selector-search.png?raw=true "Search")
 
-**View Results**
+## View Results
 ![widen-asset-selector-result](screenshots/widen-asset-selector-result.png?raw=true "Result")
 
-**Preview Asset**
+## Preview Asset
 ![widen-asset-selector-preview](screenshots/widen-asset-selector-preview.png?raw=true "Preview")
 
-**Select Asset**
+## Select Asset
 ![widen-asset-selector-select](screenshots/widen-asset-selector-select.png?raw=true "Select")
 
-**Field Set**
+## Field Set
 ![widen-asset-selector-set](screenshots/widen-asset-selector-set.png?raw=true "Set")
 
 ## Installation Instructions
