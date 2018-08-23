@@ -54,8 +54,19 @@ This uses the Widen [Instance Search Connector](https://widenv2.docs.apiary.io/#
  
 2. Open the JS file [js/widen-asset-selector-init.js](js/widen-asset-selector-init.js) and replace the values referencing dependency sources.
 	 - Replace the values for Template to the absolute URL of the *widen-asset-selector-template.html* or the inline code reference name.
- 
-3. Copy the entire contents of the *widen-asset-selector-init.js file* and paste into your existing Input Form Customization JS file. 
+
+3. Within the code of the *widen-asset-selector-init.js file*, set your API access token here:
+```javascript
+...
+self.ViewModel = function (options) {
+	...
+	self.accessToken = "{{access token goes here!}}"; //i.e. cloud/abcdefghifjklmnopqrstuvwxyz
+	...
+}
+...
+```
+
+4. Copy the entire contents of the *widen-asset-selector-init.js file* and paste into your existing Input Form Customization JS file. 
 If you don't have one already, save the contents of the file into a new JS file and upload this to Media & Documents, record the absolute URL and set the value in the CMS under Settings > Development Framework > Input Form Customization. Alternatively, you may also save this as an Inline Code file and reference it as your Input Form Customization.
 
-4. If done successfully, you should see your custom field type available as an option within Module/Content definitions form builder.
+5. If done successfully, you should see your custom field type available as an option within Module/Content definitions form builder.
