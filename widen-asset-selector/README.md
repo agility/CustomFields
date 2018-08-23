@@ -29,6 +29,9 @@ This uses the Widen [Instance Search Connector](https://widenv2.docs.apiary.io/#
 }
 ```
 
+## Video Sample
+[Quick Video Demo](screenshots/demo.mp4)
+
 ## Empty Field
 ![widen-asset-selector-new](screenshots/widen-asset-selector-new.png?raw=true "New")
 
