@@ -94,7 +94,7 @@ var WidenCustomField = function () {
 
                 //set observables on the existing binding properties
                 var existingValue = ko.mapping.fromJSON(options.fieldBinding());
-                self.value(existingValue());
+                self.value(ko.unwrap(existingValue));
                 
                 //whenever any sub-property in the fieldBinding changes update the main field binding in the model
                 ko.computed(function () {
