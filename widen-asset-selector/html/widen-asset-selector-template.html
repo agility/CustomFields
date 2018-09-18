@@ -26,13 +26,14 @@
 			width: 100%;
 		}
 
-		 .widen-image-field .widen-image-field .widen-panel-body-content {
+		.widen-image-field .widen-image-field .widen-panel-body-content {
 			position: relative;
 			margin: 0!important;
 			height: 100%;
 		}
 
-		.widen-image-field .widen-iframe-wrapper, .widen-iframe-wrapper iframe {
+		.widen-image-field .widen-iframe-wrapper,
+		.widen-iframe-wrapper iframe {
 			position: absolute;
 			top: 0;
 			bottom: 0;
@@ -46,11 +47,15 @@
 		.widen-image-field .panel-footer .control-label {
 			display: inline-block!important;
 		}
+
+		.widen-image-field .widen-panel-body-content {
+			margin: 0;
+		}
 	</style>
 
 
 	<div class="panel-heading">
-		
+
 		<!-- Required field hack -->
 		<input style="position: absolute; left: -99000px" type="text" data-bind="attr: attrBinding, value: valueAsString" />
 
@@ -73,11 +78,11 @@
 
 
 	</div>
-	
+
 	<!-- ko if: value() != null -->
 	<div class="panel-body">
 
-		
+
 
 		<div class="widen-image-field__img col-md-3">
 			<div class="widen-image-field__label">
@@ -87,7 +92,8 @@
 			<p>Insert a valid image URL.</p>
 			<!-- /ko -->
 			<!-- ko if: value().embed_link() != null && value().embed_link().length > 0 -->
-			<img class="widen-image-field__img-preview" data-bind="attr: {src: value().embed_link }, checkImage: null, css: { hidden: error() }" />
+			<img class="widen-image-field__img-preview" data-bind="attr: {src: value().embed_link }, checkImage: null, css: { hidden: error() }"
+			/>
 			<!-- /ko -->
 
 		</div>
@@ -130,14 +136,14 @@
 				<div class="nano-content panel-body-content widen-panel-body-content">
 
 					<div data-bind="visible: item().loading, agilityLoadingItem:null"></div>
-					
-					
+
+
 					<!-- ko if: item().iFrameUrl() != null -->
 					<div class="widen-iframe-wrapper">
-						<iframe style="width: 100%; height: 100%; border: none;" data-bind="attr: { src: item().iFrameUrl }, widenIFrame"/>
+						<iframe style="width: 100%; height: 100%; border: none;" data-bind="attr: { src: item().iFrameUrl }, widenIFrame" />
 					</div>
 					<!-- /ko -->
-					
+
 
 				</div>
 			</div>
