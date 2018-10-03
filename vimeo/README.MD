@@ -1,0 +1,2 @@
+# Vimeo Custom Field
+This is a custom field that can be installed into any Agility instance and is meant to with Vimeo. This lets an editor enter a Vimeo ID, and all the corresponding meta-data for that Vimeo film is fetched, returned, and saved as part of the content item. A developer can then easily access all of this metadata including the film thumbnail and embed code to display this perfectly on the frontend of the website.
