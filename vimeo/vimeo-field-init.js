@@ -29,7 +29,7 @@ var VimeoVideoFormField = function () {
             if ($pnl.size() == 0) {
 
                 //pull down the html template and load it into the element
-                $.get("http://dehd7rclpxx3r.cloudfront.net/custom-input/Vimeo/VimeoVideo-CustomFieldType.html", function (htmlContent) {
+                $.get("https://dehd7rclpxx3r.cloudfront.net/custom-input/Vimeo/VimeoVideo-CustomFieldType.html", function (htmlContent) {
 
                     options.$elem.append(htmlContent)
 
