@@ -27,14 +27,11 @@ var ColorPickerCustomFieldUsingInlineCode = function () {
 
     /// <field name="DepenenciesJS"> type="Array">The Javscript dependencies that must be loaded before your ViewModel is bound. They will be loaded in the order you specify.</field>
     self.DependenciesJS = [
-        { id: 'bootstrap-colorpicker-inline', src: 'BootstrapColorPickerPlugin' },
-        { id: 'color-picker-ko-binding-inline', src: 'BootstrapColorPickerCustomBinding' }
+        { id: 'bootstrap-colorpicker-inline-ref', src: 'BootstrapColorPickerPlugin' }
     ];
 
     /// <field name="DepenenciesCSS" type="Array">The CSS dependencies that must be loaded before your ViewModel is bound. They will be loaded in the order you specify.</field>
-    self.DependenciesCSS = [
-        { id: 'bootstrap-colorpicker-inline', src: 'BootstrapColorPickerCSS' }
-    ];
+    self.DependenciesCSS = [];
 
 
     /// <field name="ViewModel" type="KO ViewModel">The KO ViewModel that will be binded to your HTML template</field>
@@ -59,5 +56,34 @@ var ColorPickerCustomFieldUsingInlineCode = function () {
         }
     }
 }
+
+ko.bindingHandlers.colorpicker = {
+    init: function (element, valueAccessor) {
+
+        var params = ko.unwrap(valueAccessor());
+
+        function intializeColorPicker() {
+            if($.colorpicker && $.isFunction($.colorpicker)) {
+                $(element).colorpicker({
+                    color: params.value(),
+                    format: params.format
+                }).on('changeColor', function (e) {
+                    var value = $(element).colorpicker('getValue');
+                    params.value(value);
+                });
+                clearInterval(initializeInterval);
+            }
+        }
+
+        var initializeInterval = setInterval(intializeColorPicker, 300);
+
+        ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+            if (initializeInterval) {
+                clearInterval(initializeInterval);
+            }
+        })
+
+    }
+};
 
 ContentManager.Global.CustomInputFormFields.push(new ColorPickerCustomFieldUsingInlineCode());
