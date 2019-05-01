@@ -10,7 +10,7 @@ This custom field for Agility allows editors to 'pick' a color from the color wh
    
 2. Open the HTML file /html/colorpicker-template.html and update the background images being referenced in the inline css, using the URLs you just uploaded. Then, proceed to Media & Documents and upload the HTML file, or create an Inline Code file containing the contents of the file.
  
-3. Upload (to Media & Documents) or create an Inline Code file for /js/colorpicker-jquery-plugin.js and make note of the absolute URL or inline code reference name.
+3. Upload (to Media & Documents) or create an Inline Code file for /js/colorpicker-plugin.js and make note of the absolute URL or inline code reference name.
  
 
 4. Open the JS file /js/colorpicker-init.js and replace the values referencing dependency sources.
