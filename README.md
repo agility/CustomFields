@@ -28,7 +28,7 @@ You **must** have a **Custom Fields Script URL** set in the Content Manager. Thi
 
 **`EXAMPLE`** - You can load and evaluate a handful of custom fields defined in this repository by setting your **Custom Fields Script URL** to `https://agility.github.io/CustomFields/custom-fields.js`.
 
-#### Input Form Customization File Format
+#### Custom Fields JS File Format
 This file is comprised of one or more custom field function declarations and its registration. 
 
 The **Content Manager** uses [KnockoutJS](http://knockoutjs.com/) for declaritive bindings, automatic ui refresh, dependancy tracking, and templating. While you don't need to use KnockoutJS to build a custom field, you will still likely interface with **Content Manager** KnockoutJS observable objects such as *contentItem* and *fieldBinding*. It is recommended to have a basic understanding of how Knockout observables work.
