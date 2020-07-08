@@ -1,3 +1,5 @@
+var baseUrl = 'https://agility.github.io/CustomFields/';
+
 var FriendlyURLFormField = function () {
     var self = this;
 
@@ -12,7 +14,7 @@ var FriendlyURLFormField = function () {
     }
 
     /// <field name="Template" type="String">The partial HTML template that represents your custom field. Your ViewModel will be automatically bound to this template.</field>
-    self.Template = 'https://raw.githubusercontent.com/agility/CustomFields/master/friendly-url/html/friendly-url-template.html';
+    self.Template = baseUrl + 'friendly-url/html/friendly-url-template.html';
 
     /// <field name="DepenenciesJS"> type="Array">The Javscript dependencies that must be loaded before your ViewModel is bound. They will be loaded in the order you specify.</field>
     self.DependenciesJS = [];
@@ -133,7 +135,7 @@ var ColorPickerFormField = function () {
 
     /// <field name="DepenenciesJS"> type="Array">The Javscript dependencies that must be loaded before your ViewModel is bound. They will be loaded in the order you specify.</field>
     self.DependenciesJS = [
-        'https://raw.githubusercontent.com/agility/CustomFields/master/colorpicker/js/colorpicker-plugin.js'
+        { id: 'colorpicker', src: baseUrl + 'colorpicker/js/colorpicker-plugin.js'}
     ];
 
     /// <field name="DepenenciesCSS" type="Array">The CSS dependencies that must be loaded before your ViewModel is bound. They will be loaded in the order you specify.</field>
@@ -208,7 +210,7 @@ var SelectListFromAPICustomField = function(){
     self.ReferenceName = "SelectlistFromAPI";
 
     /// <field name="Template" type="String">The partial HTML template that represents your custom field. It can be an absolute path to a URL or a reference name to an inline code file in Agility CMS. Your ViewModel will be automatically bound to this template.</field>
-    self.Template = "https://github.com/agility/CustomFields/blob/master/selectlist-from-api/html/selectlist-from-api-template.html";
+    self.Template = baseUrl + "selectlist-from-api/html/selectlist-from-api-template.html";
 
     /// <field name="Render" type="Function">This function runs every time the field is rendered</field>
     self.Render = function(options){
@@ -542,7 +544,9 @@ var WidenCustomField = function () {
     self.Template = 'WidenAssetSelectorTemplate';
 
     /// <field name="DepenenciesJS"> type="Array">The Javscript dependencies that must be loaded before your ViewModel is bound. They will be loaded in the order you specify.</field>
-    self.DependenciesJS = ['https://raw.githubusercontent.com/agility/CustomFields/master/widen-asset-selector/html/widen-asset-selector-template.html'];
+    self.DependenciesJS = [
+        { id: 'widen-asset-selector', src: baseUrl + 'widen-asset-selector/html/widen-asset-selector-template.html'}
+    ];
 
     /// <field name="DepenenciesCSS" type="Array">The CSS dependencies that must be loaded before your ViewModel is bound. They will be loaded in the order you specify.</field>
     self.DependenciesCSS = [];
