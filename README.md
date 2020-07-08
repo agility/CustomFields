@@ -1,6 +1,6 @@
-# Agility Custom Fields
-
 [View in Help Center](https://help.agilitycms.com/hc/en-us/articles/360013157631)
+
+Custom fields allow you to render a custom UI for a field that an editor interacts within Agility CMS.
 
 - Build your own re-usable field types
 - Compatible with any Agility instance, module or content input form
