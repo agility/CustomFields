@@ -7,7 +7,7 @@
 - Use HTML, CSS and JS
 - Content Manager Development Mode for testing
 - Integrate with CMS UI
-- Code hosted within Agility or externally
+- Host your code externally
 
 ## Examples
 1. [Friendly URL field](friendly-url) - Auto-generates a friendly URL value based off another text field
@@ -15,28 +15,18 @@
 2. [Color Picker field](colorpicker) - Allows editors to select a color from a color-picker and save the value as rgba/hex 
 
 ## How it Works
-On load, the **Content Manager** will check for the existence of a a single **Input Form Customization JS file**. If one has been set, the JS will be executed and consequently register each Custom Field declaration you have within the file. This will tell the **Content Manager** which custom fields are available for use, and allow you add a custom field to any content/module definition.
+On load, the **Content Manager** will check for the existence of a a single **Custom Fields JS file**. If one has been set, the JS will be executed and consequently register each Custom Field declaration you have within the file. This will tell the **Content Manager** which custom fields are available for use, and allow you add a custom field to any content/module definition.
 
 When a custom field is rendered within a content/module input form in the browser, your custom code is executed. A custom field typically includes your registration JS function (including the code that is executed when the field is rendered) and a reference to an HTML file representing your presentation layer.
 
-## Setup
+## Getting Started
 
-### Register an Input Form Customization JS File
-You **must** have an **Input Form Customization** JS file referenced in the Content Manager. This can be found in **Settings > Development Framework**.
+### Register the URL for your Custom Fields
+You **must** have a **Custom Fields Script URL** set in the Content Manager. This can be found in **Settings > UI Extensions**.
 
 ![custom field input form customization](screenshots/custom-field-input-form-customization.png?raw=true "Input Form Customization File")
 
-First thing you need to decide is whether your JS file will be stored and managed within Agility (via Inline Code) or hosted externally.
-
-**Inline Code:**
-- Built-in code editor within the browser
-- Code stored in high availability Agility CDN over a dynamic URL
-- Has version history
-
-**Custom Script URL:**
-- Can be deployed anywhere
-- Easier to intergrate into source control and CI/D pipelines
-- Use your own IDE
+**`EXAMPLE`** - You can load and evaluate a handful of custom fields defined in this repository by setting your **Custom Fields Script URL** to `https://agility.github.io/CustomFields/custom-fields.js`.
 
 #### Input Form Customization File Format
 This file is comprised of one or more custom field function declarations and its registration. 
@@ -112,8 +102,8 @@ ContentManager.Global.CustomInputFormFields.push(new CustomFieldFunctionDeclarat
 ```
 
 
-### Verifying your Input Form Customization JS File
-1. After you've set your **Input Form Customization JS file** and added a custom field declaration funciton and registration, you will need to refresh the Content Manager to refresh the loaded JS file. 
+### Verifying your Custom Fields JS File
+1. After you've set your **Custom Fields Script URL** and added a custom field declaration function and registration, you will need to refresh the Content Manager to load the JS file. 
 
 2. Verify your custom input field has been registered by going to **Settings > Content Definitions (or Module Definitions)** and create or update an existing definition. Add a new field, and select the **Custom Field** tab. If successful, you should see your custom field listed under **Field Type**.
 

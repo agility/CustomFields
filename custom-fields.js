@@ -113,10 +113,10 @@ var ColorPickerFormField = function () {
     var self = this;
 
     /// <field name="Label" type="String">The display name of the Custom Field Type</field>
-    self.Label = "Color Picker Using Inline Code";
+    self.Label = "Color Picker";
 
     /// <field name="ReferenceName" type="String">The internal reference name of the Custom Field Type. Must not contain any special characters.</field>
-    self.ReferenceName = "ColorPickerUsingInlineCode";
+    self.ReferenceName = "ColorPicker";
 
     /// <field name="Render" type="Function">This function gets called each time the input form gets rendered or refreshed. Can be called mulitple times. If dynamically loading in HTML templates, be sure to only load once.</field>
     self.Render = function (options) {a
