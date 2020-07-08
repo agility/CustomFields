@@ -26,7 +26,8 @@ You **must** have a **Custom Fields Script URL** set in the Content Manager. Thi
 
 ![custom field input form customization](screenshots/custom-field-input-form-customization.png?raw=true "Input Form Customization File")
 
-**`EXAMPLE`** - You can load and evaluate a handful of custom fields defined in this repository by setting your **Custom Fields Script URL** to `https://agility.github.io/CustomFields/custom-fields.js`.
+### DEMO
+You can load and evaluate a handful of custom fields defined in this repository by setting your **Custom Fields Script URL** to `https://agility.github.io/CustomFields/custom-fields.js`.
 
 #### Custom Fields JS File Format
 This file is comprised of one or more custom field function declarations and its registration. 
@@ -114,14 +115,14 @@ There are several ways to test new/changes to a custom field type.
 
 1. For new custom fields, create a test environment for your field by creating a *test* content/module definition that you can use just for testing. If it works there, it will work in ANY definition.
 
-2. For updates to existing custom fields, create a **new version** of the custom field type in your Input Form Custimization file (i.e. "Sample Field v2") and test in a *test* content/module definition.
+2. For updates to existing custom fields, create a **new version** of the custom field type in your Custom Fields file (i.e. "Sample Field v2") and test in a *test* content/module definition.
 
 3. If making updates to an existing custom field, and creating test definitions is not feasible then you can make use of a **Development Mode** within the **Content Manager** to test changes on the existing definition forms without affecting the forms for any editors.
 
 ### Advanced Testing Development Mode
 Special care should be taken when making code changes to an existing custom field type that is being used across numerous types of content. Creating **new versions** of custom fields and *test* definitions can be cumbersome at times. 
 
-To address this, the **Content Manager** has a **Development Mode** that can be turned on and off by a developer. Turning **Development Mode** *ON* will set *your browser session only* to pull-in a **Dev Mode Custom Fields JS File** . This allows you to create a copy of your current **Input Form Customization JS file**, specify it as your **Development Mode** JS file and make any required changes and test within the browser. 
+To address this, the **Content Manager** has a **Development Mode** that can be turned on and off by a developer. Turning **Development Mode** *ON* will set *your browser session only* to pull-in a **Dev Mode Custom Fields JS File** . This allows you to create a copy of your current **Custom Fields JS file**, specify it as your **Development Mode** JS file and make any required changes and test within the browser. 
 
 It is important to note that only your browser session will pull-in this **Development Mode** JS file. When development is complete, you can simply replace the live file with your dev file.
 
