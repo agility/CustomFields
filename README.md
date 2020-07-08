@@ -121,7 +121,7 @@ There are several ways to test new/changes to a custom field type.
 ### Advanced Testing Development Mode
 Special care should be taken when making code changes to an existing custom field type that is being used across numerous types of content. Creating **new versions** of custom fields and *test* definitions can be cumbersome at times. 
 
-To address this, the **Content Manager** has a **Development Mode** that can be turned on and off by a developer. Turning **Development Mode** *ON* will set *your browser session only* to pull-in a **Dev Mode Input Form Customization JS file** . This allows you to create a copy of your current **Input Form Customization JS file**, specify it as your **Development Mode** JS file and make any required changes and test within the browser. 
+To address this, the **Content Manager** has a **Development Mode** that can be turned on and off by a developer. Turning **Development Mode** *ON* will set *your browser session only* to pull-in a **Dev Mode Custom Fields JS File** . This allows you to create a copy of your current **Input Form Customization JS file**, specify it as your **Development Mode** JS file and make any required changes and test within the browser. 
 
 It is important to note that only your browser session will pull-in this **Development Mode** JS file. When development is complete, you can simply replace the live file with your dev file.
 
