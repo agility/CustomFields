@@ -31,9 +31,9 @@ handler.post(async(req, res) => {
     console.log(req.files.image[0]);
     
     let blob = fs.createReadStream(req.files.image[0].path)
-
+    console.log(req.files.image[0]);
     const uploadRes = await api.uploadMedia({
-        fileName: 'test.jpg',
+        fileName: `${makeid(5)}-${req.files.image[0].originalFileName}`,
         fileContent: blob
     })
 
@@ -48,6 +48,16 @@ handler.post(async(req, res) => {
     });
 
 });
+
+const makeid = (length) => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
 
 export const config = {
   api: {
