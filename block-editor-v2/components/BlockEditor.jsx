@@ -17,154 +17,45 @@ import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
 import SimpleImage from '@editorjs/simple-image'
 
+
 const BlockEditor = () => {
 
 	const [value, setValue] = useState("")
 	const [height, setHeight] = useState(500)
 	const containerRef = useRef()
+    let auth = null;
+    let editor = null;
 
-	const heightChanged = (h) => {
-		if (h === height) return
+    useEffect(() => {
+        window.addEventListener("message", function (e) {
+            
+            //only care about these messages
+            if(e.data.type === 'setAuthForCustomField') {
+                auth = e.data.message;
+                editor = setupEditor(auth, height, value, setValue, setHeight, containerRef);
+            } else if (e.data.type === 'setInitialValueForCustomField') {
+                if (value !== e.data.message) {
+                    setValue(e.data.message)
 
-		setHeight(h)
+                    editor.isReady.then(() => {
+                        //wait for the editor to be ready...
+                        if (e.data.message && e.data.message.length > 0) {
+                            const blocks = JSON.parse(e.data.message)
+                            editor.render(blocks)
+                            this.setTimeout(function () {
+                                heightChanged(containerRef.current.offsetHeight, height, setHeight)
+                            }, 200)
+                        }
 
-		if (window.parent) {
-			window.parent.postMessage({
-				message: h,
-				type: 'setHeightCustomField'
-			}, "*")
-		}
+                    })
+                }
+            } else {
+                //show us the unhandled message...
+                console.log("UNHANDLED MESSAGE FROM PARENT: ", e.data)
+            }
+        }, false);
 
-	}
-
-	const valueChanged = (val) => {
-
-		if (val === value) return
-
-		setValue(val)
-		if (window.parent) {
-			console.log("posting message to parent...")
-			window.parent.postMessage({
-				message: val,
-				type: 'setNewValueFromCustomField'
-			}, "*")
-		} else {
-			console.log("can't post message to parent :(")
-		}
-	}
-
-	useEffect(() => {
-
-		const tools = {
-			embed: Embed,
-			table: Table,
-			paragraph: Paragraph,
-			list: List,
-			warning: Warning,
-			code: Code,
-			//linkTool: LinkTool,
-			image: {
-				class: Image,
-				config: {
-					/**
-					 * Custom uploader
-					 */
-					uploader: {
-						/**
-						 * Upload file to the server and return an uploaded image data
-						 * @param {File} file - file selected from the device or pasted by drag-n-drop
-						 * @return {Promise.<{success, file: {url}}>}
-						 */
-						uploadByFile: async (file) => {
-							// your own uploading logic here
-							//let fileName = `${new Date().toISOString().replace(/\./g, "").replace(/:/g, "")}-${file.name}`;
-							//let fileName = "file"
-							//let fileContent = file
-
-
-							//TODO: save the image somewhere...
-
-							return {
-								success: 1,
-								file: {
-									url: 'https://via.placeholder.com/700x300.png',
-									// any other image data you want to store, such as width, height, color, extension, etc
-								}
-							}
-						},
-
-						/**
-						 * Send URL-string to the server. Backend should load image by this URL and return an uploaded image data
-						 * @param {string} url - pasted image URL
-						 * @return {Promise.<{success, file: {url}}>}
-						 */
-						uploadByUrl(url) {
-							// your ajax request for uploading
-							if (console) console.warn("URL uploads not supported yet...", url)
-						}
-					}
-				}
-			},
-			raw: Raw,
-			header: Header,
-			quote: Quote,
-			marker: Marker,
-			checklist: CheckList,
-			delimiter: Delimiter,
-			inlineCode: InlineCode,
-			simpleImage: SimpleImage
-		}
-
-
-		const editor = new EditorJS({
-			/**
-			 * Id of Element that should contain Editor instance
-			 */
-			autofocus: true,
-			placeholder: "Enter your Rich Text here",
-			holder: 'editorjs',
-			tools,
-			onChange: () => {
-
-				editor.save().then(outputValue => {
-					const v = JSON.stringify(outputValue)
-					valueChanged(v)
-					heightChanged(containerRef.current.offsetHeight)
-
-				})
-
-			},
-
-		});
-
-		window.addEventListener("message", function (e) {
-
-			//only care about these messages
-			if (e.data.type === 'setInitialValueForCustomField') {
-				if (value !== e.data.message) {
-					setValue(e.data.message)
-
-					editor.isReady.then(() => {
-						//wait for the editor to be ready...
-						if (e.data.message && e.data.message.length > 0) {
-							const blocks = JSON.parse(e.data.message)
-							editor.render(blocks)
-							this.setTimeout(function () {
-								heightChanged(containerRef.current.offsetHeight)
-							}, 200)
-						}
-
-					})
-				}
-			} else {
-				//show us the unhandled message...
-				console.log("UNHANDLED MESSAGE FROM PARENT: ", e.data)
-			}
-		}, false);
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
+    }, []);
 
 	return (
 		<div style={{ background: "#fff", padding: '0 10px' }}>
@@ -175,6 +66,91 @@ const BlockEditor = () => {
 
 	);
 
+}
+
+const setupEditor = (auth, height, value, setValue, setHeight, containerRef) => {
+    
+    const tools = {
+        embed: Embed,
+        table: Table,
+        paragraph: Paragraph,
+        list: List,
+        warning: Warning,
+        code: Code,
+        //linkTool: LinkTool,
+        image: {
+            class: Image,
+            config: {
+                endpoints: {
+                    byFile: '/api/uploadFile',
+                    byUrl: '/api/fecthUrl'
+                },
+                additionalRequestData: auth
+            }
+        },
+        raw: Raw,
+        header: Header,
+        quote: Quote,
+        marker: Marker,
+        checklist: CheckList,
+        delimiter: Delimiter,
+        inlineCode: InlineCode,
+        simpleImage: SimpleImage
+    }
+
+
+    const editor = new EditorJS({
+        /**
+         * Id of Element that should contain Editor instance
+         */
+        autofocus: true,
+        placeholder: "Enter your Rich Text here",
+        holder: 'editorjs',
+        tools,
+        onChange: () => {
+
+            editor.save().then(outputValue => {
+                const v = JSON.stringify(outputValue)
+                valueChanged(v, value, setValue)
+                heightChanged(containerRef.current.offsetHeight, height, setHeight)
+
+            })
+
+        },
+
+    });
+
+    return editor;
+}
+
+const heightChanged = (h, height, setHeight) => {
+    if (h === height) return
+
+    setHeight(h)
+
+    if (window.parent) {
+        window.parent.postMessage({
+            message: h,
+            type: 'setHeightCustomField'
+        }, "*")
+    }
+
+}
+
+const valueChanged = (val, value, setValue) => {
+
+    if (val === value) return
+
+    setValue(val)
+    if (window.parent) {
+        console.log("posting message to parent...")
+        window.parent.postMessage({
+            message: val,
+            type: 'setNewValueFromCustomField'
+        }, "*")
+    } else {
+        console.log("can't post message to parent :(")
+    }
 }
 
 export default BlockEditor
