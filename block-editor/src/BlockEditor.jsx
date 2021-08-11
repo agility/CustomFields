@@ -83,8 +83,8 @@ const BlockEditor = () => {
 						uploadByFile: async (file) => {
 							// your own uploading logic here
 							//let fileName = `${new Date().toISOString().replace(/\./g, "").replace(/:/g, "")}-${file.name}`;
-							let fileName = "file"
-							let fileContent = file
+							//let fileName = "file"
+							//let fileContent = file
 
 
 							//TODO: save the image somewhere...
