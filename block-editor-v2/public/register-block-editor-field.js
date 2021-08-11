@@ -21,7 +21,8 @@ var BlockEditorCustomField = function() {
 			$(".col-lg-4", row).addClass("hidden")
 			$(".tab-CONTENT-tab", row).css("padding", 0)
 
-			var url = 'http://localhost:3000';
+			//var url = 'http://localhost:3000';
+            var url = 'https://agilitycms-block-editor-custom-field.vercel.app/';
 			var iframe = document.createElement('iframe');
 			iframe.className = "rt-field";
 			iframe.width = '100%';
