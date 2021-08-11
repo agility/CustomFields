@@ -53,12 +53,7 @@ const BlockEditor = () => {
 		}
 	}
 
-
-
-
 	useEffect(() => {
-
-
 
 		const tools = {
 			embed: Embed,
