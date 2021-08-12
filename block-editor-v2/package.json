@@ -26,6 +26,7 @@
     "@editorjs/raw": "^2.3.0",
     "@editorjs/simple-image": "^1.4.1",
     "@editorjs/table": "^2.0.1",
+    "@editorjs/underline": "^1.0.0",
     "@editorjs/warning": "^1.2.0",
     "cross-env": "^7.0.3",
     "multiparty": "^4.2.2",

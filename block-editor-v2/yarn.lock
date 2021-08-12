@@ -149,6 +149,11 @@
   resolved "https://registry.yarnpkg.com/@editorjs/table/-/table-2.0.1.tgz#ec7726b7b662ed4ddbcd023e9a4644fbb6ea73b8"
   integrity sha512-PB8VM+GPRwGy7IlF+WrEQw2A2c36xEXBnYIvf2VGNJo8A7PjYHtuWrlyHHCnGpY4lHXYnavZ/U8pKAfXv86XjA==
 
+"@editorjs/underline@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/underline/-/underline-1.0.0.tgz#47e5e5fde7a3dd071bc9f4faed90b4f518b7e3db"
+  integrity sha512-2qbmr6/Y5ZIsfmJeAxLujCndc5wpIEQ2uxoPIdR3uHIUQhA6Q28U5HdoGpEZwsP1d7e/A/vBhN18Ugro0iA0MQ==
+
 "@editorjs/warning@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@editorjs/warning/-/warning-1.2.0.tgz#245a2286a2e996512ac345275b64fa638e319f5e"
@@ -1457,11 +1462,6 @@ form-data@^3.0.0:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
-
-formidable@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.2.tgz#bf69aea2972982675f00865342b982986f6b8dd9"
-  integrity sha512-V8gLm+41I/8kguQ4/o1D3RIHRmhYFG4pnNyonvua+40rqcEmT4+V71yaZ3B457xbbgCsCfjSPi65u/W6vK1U5Q==
 
 fs.realpath@^1.0.0:
   version "1.0.0"
