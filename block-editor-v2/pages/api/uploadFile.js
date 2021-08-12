@@ -33,7 +33,7 @@ handler.post(async(req, res) => {
     let blob = fs.createReadStream(req.files.image[0].path)
     console.log(req.files.image[0]);
     const uploadRes = await api.uploadMedia({
-        fileName: `${makeid(5)}-${req.files.image[0].originalFileName}`,
+        fileName: `${makeid(5)}-${req.files.image[0].originalFilename}`,
         fileContent: blob
     })
 
