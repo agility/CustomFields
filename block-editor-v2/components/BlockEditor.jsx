@@ -17,7 +17,6 @@ import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
 import SimpleImage from '@editorjs/simple-image'
 
-
 const BlockEditor = () => {
 
 	const [value, setValue] = useState("")
@@ -71,13 +70,16 @@ const BlockEditor = () => {
 const setupEditor = (auth, height, value, setValue, setHeight, containerRef) => {
     
     const tools = {
+        //autofocus: true,
         embed: Embed,
         table: Table,
-        paragraph: Paragraph,
+        paragraph: {
+            class: Paragraph,
+            inlineToolbar: true
+        },
         list: List,
         warning: Warning,
         code: Code,
-        //linkTool: LinkTool,
         image: {
             class: Image,
             config: {
@@ -95,7 +97,9 @@ const setupEditor = (auth, height, value, setValue, setHeight, containerRef) => 
         checklist: CheckList,
         delimiter: Delimiter,
         inlineCode: InlineCode,
-        simpleImage: SimpleImage
+        simpleImage: SimpleImage,
+        //underline: Underline
+        
     }
 
 
