@@ -629,7 +629,7 @@ ContentManager.Global.CustomInputFormFields.push(new MarkdownCustomField());
 //
 var BlockEditorCustomField = function () {
   var self = this;
-  self.Label = "Block Editor JSON (Expiremental)";
+  self.Label = "Block Editor (JSON)";
   self.ReferenceName = "BlockEditorJSON";
   self.Render = function (options) {
     /// <summary>Function called whenever the form container this Custom Field Type is rendered or refreshed.</summary>
@@ -650,8 +650,8 @@ var BlockEditorCustomField = function () {
       $(".col-lg-4", row).addClass("hidden");
       $(".tab-CONTENT-tab", row).css("padding", 0);
 
-      //var url = 'http://localhost:3000';
-      var url = "https://agilitycms-block-editor-custom-field.vercel.app/"; //change this to your own deployed version if you have it
+      var url = "http://localhost:3000";
+      //var url = 'https://agilitycms-block-editor-custom-field.vercel.app/'; //change this to your own deployed version if you have it
       var iframe = document.createElement("iframe");
       iframe.className = "rt-field";
       iframe.width = "100%";
