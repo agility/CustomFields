@@ -3,7 +3,6 @@ import EditorJS from '@editorjs/editorjs'
 import Embed from '@editorjs/embed'
 import Table from '@editorjs/table'
 import Paragraph from '@editorjs/paragraph'
-import List from '@editorjs/list'
 import Warning from '@editorjs/warning'
 import Code from '@editorjs/code'
 
@@ -15,7 +14,8 @@ import Marker from '@editorjs/marker'
 import CheckList from '@editorjs/checklist'
 import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
-import SimpleImage from '@editorjs/simple-image'
+import NestedList from '@editorjs/nested-list';
+import DragDrop from 'editorjs-drag-drop';
 
 const BlockEditor = () => {
 
@@ -26,10 +26,12 @@ const BlockEditor = () => {
     let editor = null;
 
     useEffect(() => {
+        console.log('Block Editor => Waiting for message from Agility CMS')
         window.addEventListener("message", function (e) {
             
             //only care about these messages
             if(e.data.type === 'setAuthForCustomField') {
+                console.log('Block Editor => Auth received from Agility CMS, setting up editor...')
                 auth = e.data.message;
                 editor = setupEditor(auth, height, value, setValue, setHeight, containerRef);
             } else if (e.data.type === 'setInitialValueForCustomField') {
@@ -37,22 +39,40 @@ const BlockEditor = () => {
                     setValue(e.data.message)
 
                     editor.isReady.then(() => {
+                        console.log('Block Editor => Editor initialized, setting content, syncing height...')
                         //wait for the editor to be ready...
                         if (e.data.message && e.data.message.length > 0) {
                             const blocks = JSON.parse(e.data.message)
                             editor.render(blocks)
-                            this.setTimeout(function () {
+
+                            //wait 200ms for initial height-sync
+                             this.setTimeout(function() {
+                                 heightChanged(containerRef.current.offsetHeight, height, setHeight)
+                             }, 200)
+
+                            //sync height every second
+                            this.setInterval(function () {
                                 heightChanged(containerRef.current.offsetHeight, height, setHeight)
-                            }, 200)
+                            }, 500)
                         }
 
                     })
                 }
             } else {
                 //show us the unhandled message...
-                console.log("UNHANDLED MESSAGE FROM PARENT: ", e.data)
+                console.log("Block Editor => UNHANDLED MESSAGE FROM PARENT: ", e.data)
             }
         }, false);
+
+        if (window.parent) {
+            console.log("Block Editor => Notifying CMS this field is ready to receive messages...")
+            window.parent.postMessage({
+                message: "😀",
+                type: 'fieldIsReady'
+            }, "*")
+        } else {
+            console.log("can't post message to parent :(")
+        }
 
     }, []);
 
@@ -70,14 +90,16 @@ const BlockEditor = () => {
 const setupEditor = (auth, height, value, setValue, setHeight, containerRef) => {
     
     const tools = {
-        //autofocus: true,
-        embed: Embed,
+        //autofocus: true - //doesn't work
         table: Table,
         paragraph: {
             class: Paragraph,
+            inlineToolbar: true,
+        },
+        list: {
+            class: NestedList,
             inlineToolbar: true
         },
-        list: List,
         warning: Warning,
         code: Code,
         image: {
@@ -97,8 +119,7 @@ const setupEditor = (auth, height, value, setValue, setHeight, containerRef) => 
         checklist: CheckList,
         delimiter: Delimiter,
         inlineCode: InlineCode,
-        simpleImage: SimpleImage,
-        //underline: Underline
+        embed: Embed
         
     }
 
@@ -121,6 +142,9 @@ const setupEditor = (auth, height, value, setValue, setHeight, containerRef) => 
             })
 
         },
+        onReady: () => {
+            new DragDrop(editor);
+        }
 
     });
 

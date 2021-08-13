@@ -16,39 +16,20 @@ var BlockEditorCustomField = function() {
 
 		if ($pnl.size() == 0) {
 
-            var row = $(options.$elem).parents(".row")
-			$(".col-lg-8", row).addClass("col-lg-12").removeClass("col-lg-8")
-			$(".col-lg-4", row).addClass("hidden")
-			$(".tab-CONTENT-tab", row).css("padding", 0)
+             var row = $(options.$elem).parents(".row")
+			// $(".col-lg-8", row).addClass("col-lg-12").removeClass("col-lg-8")
+			// $(".col-lg-4", row).addClass("hidden")
+			 $(".tab-CONTENT-tab", row).css("padding", 0)
 
-			var url = 'http://localhost:3000';
-            //var url = 'https://agilitycms-block-editor-custom-field.vercel.app/';
+			//var url = 'http://localhost:3000';
+            var url = 'https://agilitycms-block-editor-custom-field.vercel.app/';
 			var iframe = document.createElement('iframe');
 			iframe.className = "rt-field";
 			iframe.width = '100%';
 			iframe.height = '500px';
-			iframe.src = url
+			iframe.src = url;
 			iframe.onload = function() {
-
-                var config = ContentManager.ViewModels.Navigation.globalConfig();
-
-                iframe.contentWindow.postMessage({
-					message: {
-                        guid: config.Guid,
-                        websiteName: config.WebsiteName,
-                        securityKey: config.SecurityKey,
-                        languageCode: ContentManager.ViewModels.Navigation.currentLanguageCode(),
-                        location: "USA" //or CANADA
-                    },
-					type: 'setAuthForCustomField'
-				}, url)
-
-				iframe.contentWindow.postMessage({
-					message: ko.unwrap(options.fieldBinding),
-					type: 'setInitialValueForCustomField'
-				}, url)
-
-                
+				console.log('Block Editor *CMS* => Iframe Loaded')
 			}
 			options.$elem.html(iframe);
 
@@ -57,6 +38,26 @@ var BlockEditorCustomField = function() {
 				var messageType = e.data.type
 
 				switch (messageType) {
+					case 'fieldIsReady':
+						var config = ContentManager.ViewModels.Navigation.globalConfig();
+						console.log('Block Editor *CMS* => Sending Auth message');
+						iframe.contentWindow.postMessage({
+							message: {
+								guid: config.Guid,
+								websiteName: config.WebsiteName,
+								securityKey: config.SecurityKey,
+								languageCode: ContentManager.ViewModels.Navigation.currentLanguageCode(),
+								location: "USA" //or CANADA
+							},
+							type: 'setAuthForCustomField'
+						}, url)
+
+						console.log('Block Editor *CMS* => Sending Current Value message');
+						iframe.contentWindow.postMessage({
+							message: ko.unwrap(options.fieldBinding),
+							type: 'setInitialValueForCustomField'
+						}, url)
+						break
 					case 'setNewValueFromCustomField':
 						options.fieldBinding(e.data.message);
 						break;
