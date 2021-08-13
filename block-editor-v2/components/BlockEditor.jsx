@@ -78,6 +78,7 @@ const BlockEditor = () => {
 
 	return (
 		<div style={{ background: "#fff", padding: '0 10px' }}>
+            <span style={{ 'font-size': '12px', background: '#fbe6ab', color: '#fb8b00', 'border-radius': '5px', padding: '3px 4px', display: 'inline-block', 'font-weight': '500'}}>Block Editor (Experimental) | <a href="https://github.com/agility/CustomFields/issues" style={{ 'text-decoration': 'underline'}}>Submit issue</a> 🐛</span>
 			<div id="editorjs" ref={containerRef}>
 
 			</div>
