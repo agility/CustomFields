@@ -11,11 +11,11 @@ import Raw from '@editorjs/raw'
 import Header from '@editorjs/header'
 import Quote from '@editorjs/quote'
 import Marker from '@editorjs/marker'
-import CheckList from '@editorjs/checklist'
 import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
-import NestedList from '@editorjs/nested-list';
-import DragDrop from 'editorjs-drag-drop';
+import NestedList from '@editorjs/nested-list'
+import DragDrop from 'editorjs-drag-drop'
+//import Undo from 'editorjs-undo'
 
 const BlockEditor = () => {
 
@@ -24,46 +24,27 @@ const BlockEditor = () => {
 	const containerRef = useRef()
     let auth = null;
     let editor = null;
+    let fieldValue = null;
+    
 
     useEffect(() => {
+        //get the field ready to wait for messages from the parent
         console.log('Block Editor => Waiting for message from Agility CMS')
         window.addEventListener("message", function (e) {
             
             //only care about these messages
-            if(e.data.type === 'setAuthForCustomField') {
-                console.log('Block Editor => Auth received from Agility CMS, setting up editor...')
-                auth = e.data.message;
-                editor = setupEditor(auth, height, value, setValue, setHeight, containerRef);
-            } else if (e.data.type === 'setInitialValueForCustomField') {
-                if (value !== e.data.message) {
-                    setValue(e.data.message)
-
-                    editor.isReady.then(() => {
-                        console.log('Block Editor => Editor initialized, setting content, syncing height...')
-                        //wait for the editor to be ready...
-                        if (e.data.message && e.data.message.length > 0) {
-                            const blocks = JSON.parse(e.data.message)
-                            editor.render(blocks)
-
-                            //wait 200ms for initial height-sync
-                             this.setTimeout(function() {
-                                 heightChanged(containerRef.current.offsetHeight, height, setHeight)
-                             }, 200)
-
-                            //sync height every second
-                            this.setInterval(function () {
-                                heightChanged(containerRef.current.offsetHeight, height, setHeight)
-                            }, 500)
-                        }
-
-                    })
-                }
+            if(e.data.type === 'setInitialProps') {
+                console.log('Block Editor => Auth, fieldValue received from Agility CMS, setting up editor...')
+                auth = e.data.message.auth;
+                fieldValue = e.data.message.fieldValue ? JSON.parse(e.data.message.fieldValue) : null;
+                editor = setupEditor(auth, height, value, setValue, setHeight, containerRef, fieldValue);
             } else {
                 //show us the unhandled message...
-                console.log("Block Editor => UNHANDLED MESSAGE FROM PARENT: ", e.data)
+                console.log("Block Editor => IGNORING MESSAGE FROM PARENT: ", e.data)
             }
         }, false);
 
+        //let the parent know we are NOW ready to receive messages
         if (window.parent) {
             console.log("Block Editor => Notifying CMS this field is ready to receive messages...")
             window.parent.postMessage({
@@ -78,7 +59,7 @@ const BlockEditor = () => {
 
 	return (
 		<div style={{ background: "#fff", padding: '0 10px' }}>
-            <span style={{ 'font-size': '12px', background: 'rgb(251 230 171 / 48%)', color: '#fb8b00', 'border-radius': '5px', padding: '3px 4px', display: 'inline-block', 'font-weight': '500'}}>Block Editor (Experimental)</span>
+            <span style={{ fontSize: '12px', background: 'rgb(251 230 171 / 48%)', color: '#fb8b00', borderRadius: '5px', padding: '3px 4px', display: 'inline-block', fontWeight: '500'}}>Block Editor (Experimental)</span>
 			<div id="editorjs" ref={containerRef}>
 
 			</div>
@@ -88,51 +69,42 @@ const BlockEditor = () => {
 
 }
 
-const setupEditor = (auth, height, value, setValue, setHeight, containerRef) => {
+const setupEditor = (auth, height, value, setValue, setHeight, containerRef, fieldValue) => {
     
-    const tools = {
-        //autofocus: true - //doesn't work
-        table: Table,
-        paragraph: {
-            class: Paragraph,
-            inlineToolbar: true,
-        },
-        list: {
-            class: NestedList,
-            inlineToolbar: true
-        },
-        warning: Warning,
-        code: Code,
-        image: {
-            class: Image,
-            config: {
-                endpoints: {
-                    byFile: '/api/uploadFile',
-                    byUrl: '/api/fecthUrl'
-                },
-                additionalRequestData: auth
-            }
-        },
-        raw: Raw,
-        header: Header,
-        quote: Quote,
-        marker: Marker,
-        checklist: CheckList,
-        delimiter: Delimiter,
-        inlineCode: InlineCode,
-        embed: Embed
-        
-    }
-
-
     const editor = new EditorJS({
-        /**
-         * Id of Element that should contain Editor instance
-         */
-        autofocus: true,
-        placeholder: "Enter your Rich Text here",
-        holder: 'editorjs',
-        tools,
+        autofocus: false, //setting this to true will not do anything because this is in an iframe
+        holder: document.querySelector('#editorjs'),
+        placeholder: "📝 Enter text, paste images/embed urls, or select a block to add here...",
+        tools:{
+            table: Table,
+            paragraph: {
+                class: Paragraph,
+                inlineToolbar: true,
+            },
+            list: {
+                class: NestedList,
+                inlineToolbar: true
+            },
+            warning: Warning,
+            code: Code,
+            image: {
+                class: Image,
+                config: {
+                    endpoints: {
+                        byFile: '/api/image/uploadByFile',
+                        byUrl: '/api/image/fetchByUrl'
+                    },
+                    additionalRequestData: auth
+                }
+            },
+            raw: Raw,
+            header: Header,
+            quote: Quote,
+            marker: Marker,
+            delimiter: Delimiter,
+            inlineCode: InlineCode,
+            embed: Embed
+        },
         onChange: () => {
 
             editor.save().then(outputValue => {
@@ -145,6 +117,23 @@ const setupEditor = (auth, height, value, setValue, setHeight, containerRef) => 
         },
         onReady: () => {
             new DragDrop(editor);
+            //const undo = new Undo({editor})
+
+            if(fieldValue) {
+                editor.render(fieldValue);
+                //undo.initialize(fieldValue);
+            }
+            
+
+            //wait 200ms for initial height-sync
+            window.setTimeout(function() {
+                heightChanged(containerRef.current.offsetHeight, height, setHeight)
+            }, 200)
+
+            //sync height every second
+            window.setInterval(function () {
+                heightChanged(containerRef.current.offsetHeight, height, setHeight)
+            }, 500)
         }
 
     });
