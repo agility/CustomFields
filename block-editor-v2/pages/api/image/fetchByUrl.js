@@ -6,7 +6,7 @@ import axios from 'axios'
 export default async function handler(req, res) {
   // Process a POST request
   if (req.method === 'POST') {
-    debugger;
+    
     //set up Agility CMS Management client
     const api = agilityMgmt.getApi({
         location: req.body.location,

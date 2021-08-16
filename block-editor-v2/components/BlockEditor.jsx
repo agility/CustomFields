@@ -15,7 +15,8 @@ import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
 import NestedList from '@editorjs/nested-list'
 import DragDrop from 'editorjs-drag-drop'
-//import Undo from 'editorjs-undo'
+//import Undo from 'editorjs-undo' //this has bugs...
+//import LinkAutocomplete from '@editorjs/link-autocomplete' //enable this to support link autocompletes (requires env-vars)
 
 const BlockEditor = () => {
 
@@ -103,7 +104,15 @@ const setupEditor = (auth, height, value, setValue, setHeight, containerRef, fie
             marker: Marker,
             delimiter: Delimiter,
             inlineCode: InlineCode,
-            embed: Embed
+            embed: Embed,
+            //enable this if you have env-vars set
+            // link: {
+            //     class: LinkAutocomplete,
+            //     config: {
+            //         endpoint: '/api/link/search',
+            //         queryParam: 'q'
+            //     }
+            // }
         },
         onChange: () => {
 

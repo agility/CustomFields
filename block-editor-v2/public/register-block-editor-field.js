@@ -1,6 +1,6 @@
 var BlockEditorCustomField = function() {
     var self = this;
-    self.Label = "Block Editor (JSON)";
+    self.Label = "Block Editor JSON (Experimental)";
     self.ReferenceName = "BlockEditorJSON";
     self.Render = function (options) {
         /// <summary>Function called whenever the form container this Custom Field Type is rendered or refreshed.</summary>
@@ -21,8 +21,8 @@ var BlockEditorCustomField = function() {
 			// $(".col-lg-4", row).addClass("hidden")
 			 $(".tab-CONTENT-tab", row).css("padding", 0)
 
-			var url = 'http://localhost:3000';
-            //var url = 'https://agilitycms-block-editor-custom-field.vercel.app/';
+			//var url = 'http://localhost:3000'; //for testing locally
+            var url = 'https://agilitycms-block-editor-custom-field.vercel.app/'; //uses a hosted, multi-tenanted endpoint for any customer, replace with your own deployed URL if you have your own version
 			var iframe = document.createElement('iframe');
 			iframe.className = "rt-field";
 			iframe.width = '100%';
@@ -48,7 +48,7 @@ var BlockEditorCustomField = function() {
 									websiteName: config.WebsiteName,
 									securityKey: config.SecurityKey,
 									languageCode: ContentManager.ViewModels.Navigation.currentLanguageCode(),
-									location: "USA" //or CANADA
+									location: 'USA', //or CANADA
 								},
 								fieldValue: ko.unwrap(options.fieldBinding)
 							},

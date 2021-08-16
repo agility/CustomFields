@@ -7,7 +7,7 @@ In your `js` file, add the following code snippet - you may already have other f
 ```javascript
 var BlockEditorCustomField = function() {
     var self = this;
-    self.Label = "Block Editor (JSON)";
+    self.Label = "Block Editor JSON (Experimental)";
     self.ReferenceName = "BlockEditorJSON";
     self.Render = function (options) {
         /// <summary>Function called whenever the form container this Custom Field Type is rendered or refreshed.</summary>
@@ -28,8 +28,8 @@ var BlockEditorCustomField = function() {
 			// $(".col-lg-4", row).addClass("hidden")
 			 $(".tab-CONTENT-tab", row).css("padding", 0)
 
-			//var url = 'http://localhost:3000';
-            var url = 'https://agilitycms-block-editor-custom-field.vercel.app/';
+			//var url = 'http://localhost:3000'; //for testing locally
+            var url = 'https://agilitycms-block-editor-custom-field.vercel.app/'; //uses a hosted, multi-tenanted endpoint for any customer, replace with your own deployed URL if you have your own version
 			var iframe = document.createElement('iframe');
 			iframe.className = "rt-field";
 			iframe.width = '100%';
@@ -47,23 +47,21 @@ var BlockEditorCustomField = function() {
 				switch (messageType) {
 					case 'fieldIsReady':
 						var config = ContentManager.ViewModels.Navigation.globalConfig();
-						console.log('Block Editor *CMS* => Sending Auth message');
+						console.log('Block Editor *CMS* => Sending Auth and fieldValue message');
 						iframe.contentWindow.postMessage({
 							message: {
-								guid: config.Guid,
-								websiteName: config.WebsiteName,
-								securityKey: config.SecurityKey,
-								languageCode: ContentManager.ViewModels.Navigation.currentLanguageCode(),
-								location: "USA" //or CANADA
+								auth: {
+									guid: config.Guid,
+									websiteName: config.WebsiteName,
+									securityKey: config.SecurityKey,
+									languageCode: ContentManager.ViewModels.Navigation.currentLanguageCode(),
+									location: 'USA', //or CANADA
+								},
+								fieldValue: ko.unwrap(options.fieldBinding)
 							},
-							type: 'setAuthForCustomField'
+							type: 'setInitialProps'
 						}, url)
 
-						console.log('Block Editor *CMS* => Sending Current Value message');
-						iframe.contentWindow.postMessage({
-							message: ko.unwrap(options.fieldBinding),
-							type: 'setInitialValueForCustomField'
-						}, url)
 						break
 					case 'setNewValueFromCustomField':
 						options.fieldBinding(e.data.message);
