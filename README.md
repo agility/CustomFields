@@ -12,7 +12,7 @@ Custom fields allow you to render a custom UI for a field that an editor interac
 
 ## Examples
 
-1. [Block Editor (Expiremental)](block-editor-v2) - Gives editors a block-styled editor for rich media stories.
+1. [Block Editor (Experimental)](block-editor-v2) - Gives editors a block-styled editor for rich media stories.
 2. [Friendly URL field](friendly-url) - Auto-generates a friendly URL value based off another text field
 3. [Color Picker field](colorpicker) - Allows editors to select a color from a color-picker and save the value as rgba/hex
 
@@ -22,9 +22,9 @@ On load, the **Content Manager** will check for the existence of a a single **Cu
 
 When a custom field is rendered within a content/module input form in the browser, your custom code is executed. A custom field typically includes your registration JS function (including the code that is executed when the field is rendered) and a reference to an HTML file representing your presentation layer.
 
-### Development Reccomendations
+### Development Recommendations
 
-For future-backwards compatability, developers should build their Custom Fields logic encapsulated into iframes.
+For future backward compatibility, developers should build their Custom Fields logic encapsulated into iframes.
 
 We recommend writing some JavaScript in the Custom Field that loads an iframe and then use iframe messages to communicate between Agility and the frontend of your integration.
 
