@@ -6,6 +6,7 @@ Custom fields allow you to render a custom UI for a field that an editor interac
 - Compatible with any Agility instance, module or content input form
 - Use HTML, CSS and JS
 - Content Manager Development Mode for testing
+- Integrate with 3rd Party Platforms & API's
 - Integrate with CMS UI
 - Host your code externally
 
