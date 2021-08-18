@@ -16,10 +16,13 @@ var BlockEditorCustomField = function() {
 
 		if ($pnl.size() == 0) {
 
-             var row = $(options.$elem).parents(".row")
+			var row = $(options.$elem).parents(".row")
+			$(".tab-CONTENT-tab", row).css("padding", 0)
+			
+			//uncomment below to hide sidebar and take the full width screen
 			// $(".col-lg-8", row).addClass("col-lg-12").removeClass("col-lg-8")
 			// $(".col-lg-4", row).addClass("hidden")
-			 $(".tab-CONTENT-tab", row).css("padding", 0)
+			$(".tab-CONTENT-tab", row).css("padding", 0)
 
 			//var url = 'http://localhost:3000'; //for testing locally
             var url = 'https://agilitycms-block-editor-custom-field.vercel.app/'; //uses a hosted, multi-tenanted endpoint for any customer, replace with your own deployed URL if you have your own version
@@ -32,6 +35,8 @@ var BlockEditorCustomField = function() {
 				console.log('Block Editor *CMS* => Iframe Loaded')
 			}
 			options.$elem.html(iframe);
+
+			var referenceName = ContentManager.ViewModels.Navigation.TopStackItem().item().ContentView().ReferenceName();
 
 			window.addEventListener("message", function (e) {
 
@@ -50,7 +55,10 @@ var BlockEditorCustomField = function() {
 									languageCode: ContentManager.ViewModels.Navigation.currentLanguageCode(),
 									location: 'USA', //or CANADA
 								},
-								fieldValue: ko.unwrap(options.fieldBinding)
+								fieldValue: ko.unwrap(options.fieldBinding),
+								custom: {
+									assetFolder: '/block-editor/' + referenceName.toLowerCase()
+								}
 							},
 							type: 'setInitialProps'
 						}, url)

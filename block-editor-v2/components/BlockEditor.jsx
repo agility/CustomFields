@@ -24,6 +24,7 @@ const BlockEditor = () => {
 	const [height, setHeight] = useState(500)
 	const containerRef = useRef()
     let auth = null;
+    let custom = null;
     let editor = null;
     let fieldValue = null;
     
@@ -37,8 +38,9 @@ const BlockEditor = () => {
             if(e.data.type === 'setInitialProps') {
                 console.log('Block Editor => Auth, fieldValue received from Agility CMS, setting up editor...')
                 auth = e.data.message.auth;
+                custom = e.data.message.custom;
                 fieldValue = e.data.message.fieldValue ? JSON.parse(e.data.message.fieldValue) : null;
-                editor = setupEditor(auth, height, value, setValue, setHeight, containerRef, fieldValue);
+                editor = setupEditor(auth, height, value, setValue, setHeight, containerRef, fieldValue, custom);
             } else {
                 //show us the unhandled message...
                 console.log("Block Editor => IGNORING MESSAGE FROM PARENT: ", e.data)
@@ -70,7 +72,7 @@ const BlockEditor = () => {
 
 }
 
-const setupEditor = (auth, height, value, setValue, setHeight, containerRef, fieldValue) => {
+const setupEditor = (auth, height, value, setValue, setHeight, containerRef, fieldValue, custom) => {
     
     const editor = new EditorJS({
         autofocus: false, //setting this to true will not do anything because this is in an iframe
@@ -95,7 +97,7 @@ const setupEditor = (auth, height, value, setValue, setHeight, containerRef, fie
                         byFile: '/api/image/uploadByFile',
                         byUrl: '/api/image/fetchByUrl'
                     },
-                    additionalRequestData: auth
+                    additionalRequestData: { ...auth, ...custom }
                 }
             },
             raw: Raw,

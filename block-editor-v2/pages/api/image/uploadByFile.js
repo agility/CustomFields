@@ -34,7 +34,12 @@ handler.post(async(req, res) => {
     const fileName = getNewFileName(image.originalFilename);
 
     //upload the file to Agility CMS
-    const uploadRes = await api.uploadMedia({fileName, fileContent});
+    const uploadRes = await api.uploadMedia({
+      fileName,
+      fileContent,
+      mediaFolder: req.body?.assetFolder
+    });
+
     console.log(`Image upload Response`, uploadRes);
 
     //return the uploaded file details
