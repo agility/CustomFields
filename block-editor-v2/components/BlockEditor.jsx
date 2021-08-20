@@ -130,7 +130,7 @@ const setupEditor = (auth, height, value, setValue, setHeight, containerRef, fie
             new DragDrop(editor);
             //const undo = new Undo({editor})
 
-            if(fieldValue) {
+            if(fieldValue && fieldValue.blocks && fieldValue.blocks.length > 0) {
                 editor.render(fieldValue);
                 //undo.initialize(fieldValue);
             }
