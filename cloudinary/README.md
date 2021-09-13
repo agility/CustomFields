@@ -1,32 +1,38 @@
 # Cloudinary + Agility CMS Integration
-This is a integration that allows CMS users to browse and select assets from Cloudinary to be used in Agility CMS.
+This is a integration that allows CMS users to browse and select assets from [Cloudinary](https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/udfxmpuf8euczsps2fnx) to be used in Agility CMS.
 
-It enables Cloudinary Image and Video fields.
+It enables [Cloudinary](https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/udfxmpuf8euczsps2fnx) Image and Video fields.
 
 In order to use this integration, some setup is required.
 
-1. Install the integration
-2. Create Content Models that use either the Image or Video custom fields
-3. Output the cloudinary assets in your digital solution (i.e. website or app)
+1. [Install the integration](#install-the-integration)
+2. [Create Content Models that use the Cloudinary Image/ Video custom fields](#set-up-content-models-to-use-cloudinary-fields)
+3. [Output the cloudinary assets in your digital solution](#output-the-cloudinary-assets-in-your-solution) (i.e. website or app)
+
+## Example
+We have an example Next.js site that can be used in conjunction with our [Blog Starter](https://agilitycms.com/starters/blog-with-nextjs).
+
+[Example GitHub Repo](https://github.com/agility/agility-nextjs-cloudinary)
+
 
 ## Requirements
 You must have a Cloudinary account as well as an Agility CMS instance.
 
 ### Agility CMS ###
-Sign up for an Agility CMS instance here
+[Sign up for an Agility CMS instance](https://agilitycms.com/trial/)
 
 ### 🌥🌥🌥 Cloudinary 🌥🌥🌥
 - Cloudinary is an amazing tool to help you unleash the full potential of your online media.
 - Optimize, transform, and combine your images to create great digital experiences
 - Upload and stream high quality adaptive videos from your website
-- Sign up for a free Cloudinary account here
+- [Sign up for a free Cloudinary account](https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/udfxmpuf8euczsps2fnx)
 
 ## Retrieve your Cloudinary API Credentials
-1. Login to Cloudinary
-2. Locate and Copy the `Cloud name` and `API Key` value from the main dashboard for reference
+1. Login to [Cloudinary](https://cloudinary.com/console/)
+2. Locate and Copy the `Cloud name` and `API Key` value from the main dashboard for reference later
 
 ## Install the Integration
-In order to use the cloudinary fields, you'll need to register it in your custom scripts file that is connected to your Agility CMS instance (via UI Extensions).
+In order to use the Cloudinary fields, you'll need to register it in your custom scripts file that is connected to your Agility CMS instance (via UI Extensions).
 
 Login to your Agility CMS instance and navigate to UI Extensions.
 
@@ -34,7 +40,7 @@ You may or may not already have a `Custom Fields Script URL`  defined.
 
 If you have an existing `JavaScript` file defined, then you'll want to append the following contents to that file:
 
-```
+```javascript
 /**
  * THIS FILE IS USED FOR THE AGILITY'S CUSTOM FIELDS
  */
@@ -249,21 +255,11 @@ var CloudinaryVideoField = function () {
 
 ContentManager.Global.CustomInputFormFields.push(new CloudinaryVideoField());
 
-
-
 var CloudinaryImageField = function () {
 	var field = this;
 	field.Label = "Cloudinary Image";
 	field.ReferenceName = "Cloudinary Image";
 	field.Render = function (options) {
-		/// <summary>Function called whenever the form container this Custom Field Type is rendered or refreshed.</summary>
-		/// <param name="options" type="Object">
-		///     <field name="$elem" type="jQueryElem">The .field-row jQuery Dom Element.</field>
-		///     <field name="contentItem" type="ContentItem Object">The entire Content Item object including Values and their KO Observable properties of all other fields on the form.</field>
-		///     <field name="fieldBinding" type="KO Observable">The value binding of thie Custom Field Type. Get and set this field's value using this property.</field>
-		///     <field name="fieldSetting" type="Object">Object representing the field's settings such as 'Hidden', 'Label', and 'Description'</field>
-		///     <field name="readonly" type="boolean">Represents if this field should be readonly or not.</field>
-		/// </param>
 
 		var $pnl = $(".cloudinary-image-field", options.$elem);
 
@@ -454,3 +450,66 @@ ContentManager.Global.CustomInputFormFields.push(new CloudinaryImageField());
 ```
 
 If you do not have a `Custom Fields Script URL` file defined, then create a new `JavaScript` file `(i.e. custom-fields.js)` using a text editor and upload this file to any public URL. The easiest way to do this is to upload the file as an Asset in the CMS and reference it by URL.
+
+### Set your Cloudinary API Values
+In order for the script to authenticate with your Cloudinary account, you'll need to set the following properties within your `JavaScript` file:
+```javascript
+...
+// Set your cloudinary settings here so your custom field can communicate with cloudinary
+var cloudinarySettings = {
+	cloud_name: '',
+	api_key: ''
+}
+...
+```
+
+Once you've updated your `Custom Fields Script URL` you'll need to refresh the Content Manager for the change to take effect.
+
+## Set up Content Models to use Cloudinary Fields
+In order to use Cloudinary fields, you need to have Content Models in Agility CMS that utilize these new field types and create some sample content.
+
+1. Add Cloudinary fields to any **Content Model** in Agility CMS
+	- Navigate to **Models -> Content Models -> {Your Content Model}**
+	- Click **Add Field**
+		- Field Name: `Cloudinary Image`
+		- Field Type: `Custom Field`
+		- Custom Field Type: `Cloudinary Image`
+		- Click the *Add Field* button
+	- Click **Add Field**
+		- Field Name: `Cloudinary Video`
+		- Field Type: `Custom Field`
+		- Custom Field Type: `Cloudinary Video`
+		- Click the *Add Field* button
+	- Click **Save**
+2. Create some content using your modified **Content Model**
+	- Navigate to an instance of your content that is based on your **Content Model**
+	- Click **+ New**
+	- Fill out the fields
+        - On the `Cloudinary Image` field click **Choose**
+            - You should see your Cloudinary Media library.  You can upload or choose an existing image.
+        - On the `Cloudinary Video` field, click  **Choose**
+            - You can upload or choose an existing video.
+
+## Output the Cloudinary Assets in your Solution
+Now that you've set up the field and allow editors to reference assets from Cloudinary, the next thing you'll need to do is actually output these fields in your digital solution (i.e. website or app).
+
+The value for an Image or Video Cloudinary field will be a `JSON` string returned from the API. 
+
+### Parsing Values
+In order to properly read your Cloudinary objects, you'll need to parse the string to an object.
+
+In `JavaScript`, this can be accomplished using `JSON.parse(cloudinaryImageFieldValue)`.
+
+### Using Cloudinary Libraries
+Cloudinary builds and maintains front-end SDKs to assist with rendering images and videos, complete with handling transformations and much more.
+
+- [Cloudinary JavaScript SDK](https://cloudinary.com/documentation/javascript2_quick_start)
+- [Cloudinary React SDK](https://cloudinary.com/documentation/react2_quick_start)
+- [Cloudinary Vue.js SDK](https://cloudinary.com/documentation/vue_integration)
+- [Cloudinary jQuery SDK](https://cloudinary.com/documentation/jquery_integration)
+- [Cloudinary Mobile/Native SDKs](https://cloudinary.com/documentation/mobile_sdks)
+- [Gatsby SDK](https://www.gatsbyjs.com/docs/how-to/images-and-media/using-cloudinary-image-service/)
+- [Gridsom SDK](https://gridsome-cloudinary.netlify.app/)
+- [Laravel SDK](https://github.com/cloudinary-labs/cloudinary-laravel/)
+- [Nuxt JS](https://cloudinary.nuxtjs.org/)
+
