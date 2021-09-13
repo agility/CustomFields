@@ -438,7 +438,7 @@ In order to use Cloudinary fields, you need to have Content Models in Agility CM
 ## Output the Cloudinary Assets in your Solution
 Now that you've set up the field and allow editors to reference assets from Cloudinary, the next thing you'll need to do is actually output these fields in your digital solution (i.e. website or app).
 
-The value for an Image or Video Cloudinary field will be a `JSON` string returned from the API. 
+The value for an Image or Video Cloudinary field will be a `JSON` string returned from the Content Fetch or GraphQL API. 
 
 ### Cloudinary Field Values
 In order to properly read your Cloudinary resource, you'll need to parse the string to an object.
