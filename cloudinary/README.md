@@ -440,10 +440,34 @@ Now that you've set up the field and allow editors to reference assets from Clou
 
 The value for an Image or Video Cloudinary field will be a `JSON` string returned from the API. 
 
-### Parsing Values
-In order to properly read your Cloudinary objects, you'll need to parse the string to an object.
+### Cloudinary Field Values
+In order to properly read your Cloudinary resource, you'll need to parse the string to an object.
 
 In `JavaScript`, this can be accomplished using `JSON.parse(cloudinaryImageFieldValue)`.
+
+### API Response Format
+```json
+    {
+        //label for accessibility and seo
+        "alt": "label for the image", 
+        //bytes of the selected resource
+        "bytes": 196261,
+        //the length of the video (if it is a video)
+        "duration": null,
+        //the height of the resource
+        "height": 854,
+        //the width of the resource
+        "width": 1280,
+        //the cloudinary id of the asset
+        "public_id": "snbrwewjrhnljh2bkllv",
+        //the type of resource (image/video)
+        "resource_type": "image",
+        //the https url of the asset (recommended)
+        "secure_url": "https://res.cloudinary.com/agility-cms/image/upload/v1622152750/snbrwewjrhnljh2bkllv.jpg",
+        //the http url of the asset (not recommended)
+        "url": "http://res.cloudinary.com/agility-cms/image/upload/v1622152750/snbrwewjrhnljh2bkllv.jpg"
+    }
+```
 
 ### Using Cloudinary Libraries
 Cloudinary builds and maintains front-end SDKs to assist with rendering images and videos, complete with handling transformations and much more.
