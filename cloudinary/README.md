@@ -446,7 +446,7 @@ In order to properly read your Cloudinary resource, you'll need to parse the str
 In `JavaScript`, this can be accomplished using `JSON.parse(cloudinaryImageFieldValue)`.
 
 ### API Response Format
-```json
+```javascript
     {
         //label for accessibility and seo
         "alt": "label for the image", 
