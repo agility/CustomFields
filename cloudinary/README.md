@@ -4,7 +4,7 @@ This is a integration that allows CMS users to browse and select assets from [Cl
 It enables [Cloudinary](https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/udfxmpuf8euczsps2fnx) Image and Video fields.
 
 ## Overview
-VIDEO GOES HERE
+[Watch Video](https://github.com/agility/CustomFields/blob/master/cloudinary/media/cloudinary-agilitycms.mp4?raw=true)
 
 ## Image Field
 Renders an **Image** field that interacts with your Cloudinary assets.
