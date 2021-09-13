@@ -513,3 +513,5 @@ Cloudinary builds and maintains front-end SDKs to assist with rendering images a
 - [Laravel SDK](https://github.com/cloudinary-labs/cloudinary-laravel/)
 - [Nuxt JS](https://cloudinary.nuxtjs.org/)
 
+If you want to see how a fully-functional website can use Cloudinary and Agility CMS, check out our [Next.js Example](#example)
+
