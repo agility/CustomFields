@@ -3,11 +3,26 @@ This is a integration that allows CMS users to browse and select assets from [Cl
 
 It enables [Cloudinary](https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/udfxmpuf8euczsps2fnx) Image and Video fields.
 
-In order to use this integration, some setup is required.
+## Overview
+VIDEO GOES HERE
 
-1. [Install the integration](#install-the-integration)
-2. [Create Content Models that use the Cloudinary Image/ Video custom fields](#set-up-content-models-to-use-cloudinary-fields)
-3. [Output the cloudinary assets in your digital solution](#output-the-cloudinary-assets-in-your-solution) (i.e. website or app)
+## Image Field
+Renders an **Image** field that interacts with your Cloudinary assets.
+
+![Cloudinary Image Field](media/cloudinary-image-field.png)
+
+Allows you to browse your Cloudinary assets.
+
+![Cloudinary Selector UI](media/cloudinary-selector-ui.png)
+
+## Video Field
+Renders a **Video** field that interacts with your Cloudinary assets.
+
+![Cloudinary Video Field](media/cloudinary-video-field.png)
+
+Allows you to browse your Cloudinary assets.
+
+![Cloudinary Video Select UI](media/cloudinary-video-selector.png)
 
 ## Example
 We have an example Next.js site that can be used in conjunction with our [Blog Starter](https://agilitycms.com/starters/blog-with-nextjs).
@@ -16,7 +31,13 @@ We have an example Next.js site that can be used in conjunction with our [Blog S
 
 
 ## Requirements
-You must have a Cloudinary account as well as an Agility CMS instance.
+In order to use this integration, some **setup** is required.
+
+1. Ensure you have setup Agility CMS and Cloudinary accounts.
+2. [Install the integration](#install-the-integration)
+3. [Create Content Models that use the Cloudinary Image/ Video custom fields](#set-up-content-models-to-use-cloudinary-fields)
+4. [Output the cloudinary assets in your digital solution](#output-the-cloudinary-assets-in-your-solution) (i.e. website or app)
+
 
 ### Agility CMS ###
 [Sign up for an Agility CMS instance](https://agilitycms.com/trial/)
