@@ -1,7 +1,15 @@
 # Cloudinary + Agility CMS Integration
-This is a integration that allows CMS users to browse and select assets from [Cloudinary](https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/udfxmpuf8euczsps2fnx) to be used in Agility CMS.
+The Cloudinary integration with Agility CMS enables Agility CMS users to seamlessly search, select, and associate cloudinary resources such as Images and Videos with content in the Agility Content Manager (CMS).
 
-It enables [Cloudinary](https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/udfxmpuf8euczsps2fnx) Image and Video fields.
+This makes publishing content with Cloudinary resources quick and easy.
+
+**Features**:
+- Link to Cloudinary resources directly from Agility CMS content
+- Browse and search Cloudinary resources
+- Choose the transformation, quality, and optimized versions of the resource
+- Preview the selected resources
+- Stores the selected resource metadata in a JSON object which is returned from the Agility API
+
 
 ## Overview
 ### [🎥 Watch Video](https://github.com/agility/CustomFields/blob/master/cloudinary/media/cloudinary-agilitycms.mp4?raw=true)
