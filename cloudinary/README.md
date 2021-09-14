@@ -12,7 +12,8 @@ This makes publishing content with Cloudinary resources quick and easy.
 
 
 ## Overview
-### [🎥 Watch Video](https://github.com/agility/CustomFields/blob/master/cloudinary/media/cloudinary-agilitycms.mp4?raw=true)
+### [🎥 Watch Video](https://vimeo.com/604321549)
+
 
 ## Image Field
 Renders an **Image** field that interacts with your Cloudinary assets.
