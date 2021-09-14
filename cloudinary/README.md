@@ -1,5 +1,5 @@
 # Cloudinary + Agility CMS Integration
-The Cloudinary integration with Agility CMS enables Agility CMS users to seamlessly search, select, and associate cloudinary resources such as Images and Videos with content in the Agility CMS.
+The Cloudinary integration with Agility CMS enables Agility CMS users to seamlessly search, select, and associate Cloudinary resources such as Images and Videos with content in the Agility CMS.
 
 This makes publishing content with Cloudinary resources quick and easy.
 
