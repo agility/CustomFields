@@ -10,6 +10,13 @@ var cloudinarySettings = {
 	api_key: ''
 }
 
+var integrationSettings = {
+	type: 'agility_cloudinary_custom_field',
+	platform: 'agilitycms',
+	version: '1.0',
+	environment: 'prod'
+}
+
 if(!cloudinarySettings.cloud_name || !cloudinarySettings.api_key) {
 	console.error('Cloudinary `cloud_name` and `api_key` must be set in your Custom field script.')
 }
@@ -70,10 +77,13 @@ var CloudinaryVideoField = function () {
 							cloud_name: cloudinarySettings.cloud_name,
 							api_key: cloudinarySettings.api_key,
 							insert_caption: "Choose video",
-							//inline_container: '.cms-container',
 							multiple: false,
 							max_files: 1,
-							search: { expression: 'resource_type:video' }
+							search: { expression: 'resource_type:video' },
+							type: integrationSettings.type,
+							platform: integrationSettings.platform,
+							version: integrationSettings.version,
+							environment: integrationSettings.environment
 						}, {
 							insertHandler: function (data) {
 								data.assets.forEach(asset => {
@@ -97,11 +107,13 @@ var CloudinaryVideoField = function () {
 							cloud_name: cloudinarySettings.cloud_name,
 							api_key: cloudinarySettings.api_key,
 							insert_caption: "Choose video",
-							//inline_container: '.cms-container',
 							multiple: false,
 							max_files: 1,
 							asset: { resource_type: "video", type: "upload", public_id: self.fieldBinding().public_id() },
-							//search: { expression: 'resource_type:video' }
+							type: integrationSettings.type,
+							platform: integrationSettings.platform,
+							version: integrationSettings.version,
+							environment: integrationSettings.environment
 						}, {
 							insertHandler: function (data) {
 								data.assets.forEach(asset => {
@@ -227,10 +239,13 @@ var CloudinaryImageField = function () {
 							cloud_name: cloudinarySettings.cloud_name,
 							api_key: cloudinarySettings.api_key,
 							insert_caption: "Choose Image",
-							//inline_container: '.cms-container',
 							multiple: false,
 							max_files: 1,
-							search: { expression: 'resource_type:image' }
+							search: { expression: 'resource_type:image' },
+							type: integrationSettings.type,
+							platform: integrationSettings.platform,
+							version: integrationSettings.version,
+							environment: integrationSettings.environment
 						}, {
 							insertHandler: function (data) {
 								data.assets.forEach(asset => {
@@ -257,11 +272,13 @@ var CloudinaryImageField = function () {
 							cloud_name: cloudinarySettings.cloud_name,
 							api_key: cloudinarySettings.api_key,
 							insert_caption: "Choose image",
-							//inline_container: '.cms-container',
 							multiple: false,
 							max_files: 1,
-							asset: { resource_type: "image", type: "upload", public_id: self.fieldBinding().public_id() },
-
+							asset: { resource_type: "image", type: "upload", public_id: self.fieldBinding().public_id() },,
+							type: integrationSettings.type,
+							platform: integrationSettings.platform,
+							version: integrationSettings.version,
+							environment: integrationSettings.environment
 						}, {
 							insertHandler: function (data) {
 								data.assets.forEach(asset => {
