@@ -80,10 +80,7 @@ var CloudinaryVideoField = function () {
 							multiple: false,
 							max_files: 1,
 							search: { expression: 'resource_type:video' },
-							type: integrationSettings.type,
-							platform: integrationSettings.platform,
-							version: integrationSettings.version,
-							environment: integrationSettings.environment
+							integration: integrationSettings
 						}, {
 							insertHandler: function (data) {
 								data.assets.forEach(asset => {
@@ -110,10 +107,7 @@ var CloudinaryVideoField = function () {
 							multiple: false,
 							max_files: 1,
 							asset: { resource_type: "video", type: "upload", public_id: self.fieldBinding().public_id() },
-							type: integrationSettings.type,
-							platform: integrationSettings.platform,
-							version: integrationSettings.version,
-							environment: integrationSettings.environment
+							integration: integrationSettings
 						}, {
 							insertHandler: function (data) {
 								data.assets.forEach(asset => {
@@ -242,10 +236,7 @@ var CloudinaryImageField = function () {
 							multiple: false,
 							max_files: 1,
 							search: { expression: 'resource_type:image' },
-							type: integrationSettings.type,
-							platform: integrationSettings.platform,
-							version: integrationSettings.version,
-							environment: integrationSettings.environment
+							integration: integrationSettings
 						}, {
 							insertHandler: function (data) {
 								data.assets.forEach(asset => {
@@ -275,10 +266,7 @@ var CloudinaryImageField = function () {
 							multiple: false,
 							max_files: 1,
 							asset: { resource_type: "image", type: "upload", public_id: self.fieldBinding().public_id() },,
-							type: integrationSettings.type,
-							platform: integrationSettings.platform,
-							version: integrationSettings.version,
-							environment: integrationSettings.environment
+							integration: integrationSettings
 						}, {
 							insertHandler: function (data) {
 								data.assets.forEach(asset => {
