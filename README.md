@@ -2,19 +2,22 @@
 
 Custom fields allow you to render a custom UI for a field that an editor interacts within Agility CMS.
 
-- Build your own re-usable field types
-- Compatible with any Agility instance, module or content input form
-- Use HTML, CSS and JS
-- Content Manager Development Mode for testing
-- Integrate with 3rd Party Platforms & API's
-- Integrate with CMS UI
-- Host your code externally
+There are many different reasons why you might use a custom field. Here are a few ideas:
+
+- Integrate with a Digital Asset Manager to allow editors to search and select external assets
+- Integrate with a third-party/internal API to allow editors to search and select external entities
+- Provide a customized input field such as a Block Editor, Vimeo Video, or Color Picker
 
 ## Examples
 
-1. [Block Editor (Experimental)](block-editor-v2) - Gives editors a block-styled editor for rich media stories.
-2. [Friendly URL field](friendly-url) - Auto-generates a friendly URL value based off another text field
-3. [Color Picker field](colorpicker) - Allows editors to select a color from a color-picker and save the value as rgba/hex
+1. [Markdown](markdown-field) - Give editors the ability to input markdown
+2. [Cloudinary](cloudinary) - Gives editors the ability to search and select resources from Cloudinary
+3. [Widen](widen-asset-selector) - Gives editors the ability to search and select resources from Widen
+4. [Vimeo](vimeo) - Gives editors the ability to paste a Vimeo URL and retrieve metadata for the video to encorporate in content
+5. [Block Editor (Experimental)](block-editor-v2) - Gives editors a block-styled editor for rich media stories
+6. [Friendly URL field](friendly-url) - Auto-generates a friendly URL value based off another text field
+7. [Color Picker field](colorpicker) - Allows editors to select a color from a color-picker and save the value as rgba/hex
+8. [Selectlist from External API](selectlist-from-api) - A template you can start with to call an external API and allow editors to search and select external entities
 
 ## How it Works
 
