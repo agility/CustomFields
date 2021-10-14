@@ -8,13 +8,6 @@ const initializeField = ({ fieldTypeName, onReady }) => {
         if(e.data.type === 'setInitialProps') {
             console.log(`${fieldTypeName} => auth, fieldValue received from Agility CMS, setting up field...`)
             onReady(e.data.message);
-            
-            // //(optional) auth object contains the websiteName and securityKey which can be used to initialize the Content Management API if needed
-            // auth = e.data.message.auth;
-            // //set the actual value of the field
-            // setValue(e.data.message.fieldValue ? e.data.message.fieldValue : "");
-            // //get the parent window URL 
-            // parentTarget = e.data.message.origin;
         } else {
             //show us the unhandled message...
             console.log(`${fieldTypeName} => IGNORING MESSAGE FROM PARENT: `, e.data)
@@ -44,7 +37,25 @@ const updateFieldValue = ({ value, fieldTypeName }) => {
       }
 }
 
+const updateFieldHeight = ({ height }) => {
+    if (window.parent) {
+        window.parent.postMessage({
+            message: height,
+            type: 'setHeightCustomField'
+        }, "*")
+    }
+}
+
+const openFlyout = ({flyoutTitle, flyoutSize, iFrameUrl, iFrameWidth, iFrameHeight }) => {
+    //todo: implement function to open a flyout in the CMS and load another iframe
+}
+
+const closeFlyout = ({ flyoutID }) => {
+    //todo: implement function to close a flyout in the CMS
+}
+
 export {
     initializeField,
-    updateFieldValue
+    updateFieldValue,
+    updateFieldHeight
 }
