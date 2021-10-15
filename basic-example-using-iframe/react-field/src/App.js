@@ -1,38 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './App.css';
 import { initializeField, updateFieldValue } from './agility-utils'
 
 function App() {
 
-  const fieldTypeName = 'Basic Custom Field';
-  let auth = null;
+  const [auth, setAuth] = useState({});
   const [value, setValue] = useState("");
+  const [fieldName, setFieldName] = useState("");
+  const [fieldID, setFieldID] = useState("");
+  const containerRef = useRef();
+
 
   useEffect(() => {
     initializeField({
-      fieldTypeName,
+      containerRef,
       //when field is ready, get the params (i.e. value and auth) from the CMS
       onReady: (params) => {
-          auth = params.auth;
+          setAuth(params.auth);
           //set the actual value of the field
           setValue(params.fieldValue ? params.fieldValue : "");
+          setFieldID(params.fieldID);
+          setFieldName(params.fieldName);
       }
     })
+
   }, []);
 
   const updateValue = (newVal) => {
     //update the react state
     setValue(newVal);
-
     //notify Agility CMS of the new value
-    updateFieldValue({ value: newVal, fieldTypeName });
+    updateFieldValue({ value: newVal, fieldName, fieldID });
   }
 
   return (
-    <div className="App">
+    <div className="App" ref={containerRef}>
       <label>
         Basic Custom Field
-        <input type="text" value={value} onChange={e => updateValue(e.target.value)} />
+        <textarea style={{display: 'block', width: '100%'}} type="text" value={value} onChange={e => updateValue(e.target.value)} />
       </label>
     </div>
   );

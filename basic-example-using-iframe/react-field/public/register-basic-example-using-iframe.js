@@ -12,14 +12,13 @@ var BasicCustomField = function() {
         ///     <field name="fieldSetting" type="Object">Object representing the field's settings such as 'Hidden', 'Label', and 'Description'</field>
         ///     <field name="readonly" type="boolean">Represents if this field should be readonly or not.</field>
         /// </param>
-
         setupIframe({
             fieldLabel: self.Label,
             fieldReferenceName: self.ReferenceName,
             fieldOptions: options,
             iFrameUrl: 'http://localhost:3000/',
             iFrameWidth: '100%',
-            iFrameHeight: '500px',
+            iFrameHeight: 'auto',
             iFrameClassName: 'basic-custom-field'
         })
     }
@@ -43,15 +42,17 @@ var setupIframe = function(params) {
 
     var config = ContentManager.ViewModels.Navigation.globalConfig();
     var languageCode = ContentManager.ViewModels.Navigation.currentLanguageCode();
+    var fieldName = params.fieldOptions.fieldSetting.FieldName;
+    var fieldID = params.fieldOptions.fieldSetting.FieldID;
 
     //set up the child iframe to render the field
     var iframe = document.createElement('iframe');
     iframe.className = params.iFrameClassName;
     iframe.width = params.iFrameWidth;
     iframe.height = params.iFrameHeight;
-    iframe.src = params.iFrameUrl;
+    iframe.src = params.iFrameUrl + '?fieldName=' + fieldName + '&fieldID=' + fieldID;
     iframe.onload = function() {
-        console.log(params.fiedLabel + ' (from CMS) => Iframe Loaded')
+        
     }
 
     //render the iframe
@@ -59,13 +60,13 @@ var setupIframe = function(params) {
 
     //listen for all iframe messages
     window.addEventListener("message", function (e) {
-        debugger;
+        
         //only process messages from the child iframe
         if(e.origin !== iFrameOrigin) return;
-
+        console.log(e.data.type);
         switch (e.data.type) {
-            case 'fieldIsReady':
-                console.log(params.fieldLabel + ' (from CMS) => Sending auth and fieldValue message');
+            case 'fieldReady_for_' + fieldName + '_' + fieldID:
+                console.log(fieldName + '['+ params.fieldOptions.fieldSetting.Settings.CustomFieldType + '] (from CMS) => Sending auth and fieldValue message');
                 //send a message to the child iframe with the details of this field
                 iframe.contentWindow.postMessage({
                     message: {
@@ -77,25 +78,27 @@ var setupIframe = function(params) {
                             location: 'USA', //or 'CANADA'
                         },
                         fieldValue: ko.unwrap(params.fieldOptions.fieldBinding),
-                        fieldLabel: params.fieldLabel,
-                        fieldReferenceName: params.fieldReferenceName,
+                        fieldLabel: params.fieldOptions.fieldSetting.Label,
+                        fieldName: fieldName,
+                        fieldID: fieldID,
+                        fieldReferenceName: params.fieldOptions.fieldSetting.Settings.CustomFieldType,
+                        //fieldOptions: params.fieldOptions,
                         origin: window.location.href
 
                     },
-                    type: 'setInitialProps'
-                }, iFrameOrigin)
+                    type: 'setInitialProps_for_' + fieldName + '_' + fieldID
+                }, "*")
 
                 break
-            case 'setNewValueFromCustomField':
+            case 'setNewValue_for_' + fieldName + '_' + fieldID:
                 params.fieldOptions.fieldBinding(e.data.message);
                 break;
-            case 'setHeightCustomField':
+            case 'setHeight_for_' + fieldName + '_' + fieldID:
                 iframe.height = e.data.message + "px"
                 break;
 
             default:
                 //do nothing...
-                console.log("not handled", e.data)
                 break;
         }
 
