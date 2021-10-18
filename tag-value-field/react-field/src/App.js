@@ -5,8 +5,6 @@ import agility from '@agility/content-fetch';
 
 function App() {
   const [tags, setTags] = useState([]);
-  const [auth, setAuth] = useState({});
-  const [value, setValue] = useState("");
   const [fieldName, setFieldName] = useState("");
   const [fieldLabel, setFieldLabel] = useState("");
   const [fieldID, setFieldID] = useState("");
@@ -20,7 +18,6 @@ function App() {
       //when field is ready, get the params (i.e. value and auth) from the CMS
       onReady: (params) => {
           const value = params.fieldValue ? params.fieldValue : '[]';
-          setAuth(params.auth);
           setTags(JSON.parse(value));
           setFieldID(params.fieldID);
           setFieldName(params.fieldName);
@@ -57,12 +54,8 @@ function App() {
 
   const updateValue = () => {
     const newVal = JSON.stringify(tags);
-    //update the react state
-    setValue(newVal);
     //notify Agility CMS of the new value
     updateFieldValue({ value: newVal, fieldName, fieldID });
-
-    console.log(newVal);
   }
 
   const updateTagValue = (index, tagValue) => {
