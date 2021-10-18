@@ -1,0 +1,29 @@
+.App_table__heading {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    background-color: #373939;
+    color: white;
+    padding: .4rem .6rem;
+}
+
+.App_table__heading__col {
+
+}
+
+.App_table__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: .6rem;
+    border-bottom: 1px solid grey;
+    margin-bottom: .6rem;
+}
+
+
+
+
+
+
