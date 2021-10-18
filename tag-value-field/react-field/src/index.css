@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600&display=swap');
+
+*, :after, :before{
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Muli, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+input, select {
+  font-family: Muli, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  font-size: 13px;
+  color: #262523;
+  border: 1px solid #ccc;
+  padding: 2px 8px;
+  height: 32px;
+  border-radius: 3px!important;
+}
+
+label {
+  color: #262523;
+  font-size: 13px;
+  font-weight: 600;
+  margin: .2rem 0;
+  display: inline-block;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
