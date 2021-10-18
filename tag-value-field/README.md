@@ -169,13 +169,13 @@ There are several properties you'll want to update that are specific to you, the
 setupIframe({
             ...
             //the absolute URL to your custom fields app (can be http://localhost:3000 for local testing)
-            iFrameUrl: 'http://localhost:3000/',
+            iFrameUrl: 'https://agility-tag-value-custom-field-example.vercel.app/',
             ...
             customProps: {
                 //the reference name of the content list in Agility you want to pull as options for the tags
                 tagsContentReferenceName: 'Tags',
                 //your preview API key that will be used to retrieve content from Agility (https://manager.agilitycms.com/settings/apikeys)
-                apiKey: 'defaultpreview.7dc1052104d1f593efd8f7934e913f70e5f7615a6e80970b5f18f4ebe6a0810c'
+                apiKey: 'defaultpreview.7dc1052104d1f593XXXXXXXXXXXXXXXXXXXXXXX'
             }
         })
 ```

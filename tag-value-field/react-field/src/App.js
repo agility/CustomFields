@@ -11,8 +11,6 @@ function App() {
   const [tagOptions, setTagOptions] = useState([]);
   const containerRef = useRef();
 
-  
-
   useEffect(() => {
     initializeField({
       containerRef,

@@ -16,8 +16,8 @@ var TagValueCustomField = function() {
             fieldLabel: self.Label,
             fieldReferenceName: self.ReferenceName,
             fieldOptions: options,
-            //the absolute URL to your custom fields app
-            iFrameUrl: 'http://localhost:3000/',
+            //the absolute URL to your custom fields app (use https://localhost:3000/ for testing locally in Development Mode)
+            iFrameUrl: 'https://agility-tag-value-custom-field-example-hbi8csaft-agility-cms.vercel.app/',
             iFrameWidth: '100%',
             iFrameHeight: 'auto',
             iFrameClassName: 'tag-value-custom-field',
