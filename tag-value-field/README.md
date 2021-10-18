@@ -11,7 +11,7 @@ This makes it easy to build flexible content models where each item could have v
 
 
 ## Overview
-### [🎥 Watch Video](media/tag-value-field-mp4)
+### [🎥 Watch Video](https://github.com/agility/CustomFields/blob/master/tag-value-field/media/tag-value-field.mp4?raw=true)
 
 
 ## Field 
