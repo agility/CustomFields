@@ -28,7 +28,7 @@ In order to use this custom field, some **setup** is required.
 1. [Administrator access to an Agility CMS instance](#retrieve-your-agility-cms-preview-api-key) so you can retrive your preview API Key
 2. [Initialize a list of tag/field options that editors can use](#initialize-a-list-of-tag-field-options)
 3. [Install the integration](#install-the-integration)
-4. [Create a Content Model that uses the Custom Field](#set-up-content-models-to-use-cloudinary-fields)
+4. [Create a Content Model that uses the Custom Field](#create-a-content-model-that-uses-the-custom-field)
 
 
 ## Retrieve your Agility CMS Preview API Key
