@@ -64,6 +64,7 @@ const autoSyncFieldHeight = ({ containerRef, fieldName, fieldID }) => {
 }
 
 const getUrlParameter = (name) => {
+    //eslint-disable-next-line
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
     var results = regex.exec(window.location.search);

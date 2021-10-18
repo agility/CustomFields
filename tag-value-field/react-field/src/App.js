@@ -11,6 +11,7 @@ function App() {
   const [tagOptions, setTagOptions] = useState([]);
   const containerRef = useRef();
 
+  
 
   useEffect(() => {
     initializeField({
@@ -34,8 +35,13 @@ function App() {
 
   //when tags change, update our field value
   useEffect(() => {
+    const updateValue = () => {
+      const newVal = JSON.stringify(tags);
+      //notify Agility CMS of the new value
+      updateFieldValue({ value: newVal, fieldName, fieldID });
+    }
     updateValue();
-  }, [tags])
+  }, [tags, fieldID, fieldName])
 
   const getSetTagOptions = async ({ guid, apiKey, languageCode, contentReferenceName}) => {
     const api = agility.getApi({
@@ -50,12 +56,6 @@ function App() {
     })
 
     setTagOptions(tagOptionsResp.items);
-  }
-
-  const updateValue = () => {
-    const newVal = JSON.stringify(tags);
-    //notify Agility CMS of the new value
-    updateFieldValue({ value: newVal, fieldName, fieldID });
   }
 
   const updateTagValue = (index, tagValue) => {
