@@ -77,7 +77,7 @@ var TagValueCustomField = function() {
                 //the reference name of the content list in Agility you want to pull as options for the tags
                 tagsContentReferenceName: 'Tags',
                 //your preview API key that will be used to retrieve content from Agility (https://manager.agilitycms.com/settings/apikeys)
-                apiKey: 'defaultpreview.7dc1052104d1f593efd8f7934e913f70e5f7615a6e80970b5f18f4ebe6a0810c'
+                apiKey: 'defaultpreview.7dc1052104d1f593efdXXXXXXXXXXXXXXXXXXXXXXXXXXX'
             }
         })
     }
