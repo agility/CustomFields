@@ -16,10 +16,17 @@ var TagValueCustomField = function() {
             fieldLabel: self.Label,
             fieldReferenceName: self.ReferenceName,
             fieldOptions: options,
+            //the absolute URL to your custom fields app
             iFrameUrl: 'http://localhost:3000/',
             iFrameWidth: '100%',
             iFrameHeight: 'auto',
-            iFrameClassName: 'tag-value-custom-field'
+            iFrameClassName: 'tag-value-custom-field',
+            customProps: {
+                //the reference name of the content list in Agility you want to pull as options for the tags
+                tagsContentReferenceName: 'Tags',
+                //your preview API key that will be used to retrieve content from Agility (https://manager.agilitycms.com/settings/apikeys)
+                apiKey: 'defaultpreview.7dc1052104d1f593efd8f7934e913f70e5f7615a6e80970b5f18f4ebe6a0810c'
+            }
         })
     }
 }
@@ -73,18 +80,16 @@ var setupIframe = function(params) {
                             websiteName: config.WebsiteName,
                             securityKey: config.SecurityKey,
                             languageCode: languageCode,
-                            location: 'USA', //or 'CANADA',
-                            apiKey: 'defaultpreview.7dc1052104d1f593efd8f7934e913f70e5f7615a6e80970b5f18f4ebe6a0810c',
+                            //'USA' or 'CANADA',
+                            location: 'USA'
                         },
                         fieldValue: ko.unwrap(params.fieldOptions.fieldBinding),
                         fieldLabel: params.fieldOptions.fieldSetting.Label,
                         fieldName: fieldName,
                         fieldID: fieldID,
                         fieldReferenceName: params.fieldOptions.fieldSetting.Settings.CustomFieldType,
-                        //fieldOptions: params.fieldOptions,
                         origin: window.location.href,
-                        tagsContentReferenceName: 'Tags',
-
+                        customProps: params.customProps
                     },
                     type: 'setInitialProps_for_' + fieldName + '_' + fieldID
                 }, "*")

@@ -26,6 +26,14 @@ input, select {
   border-radius: 3px!important;
 }
 
+label {
+  color: #262523;
+  font-size: 13px;
+  font-weight: 600;
+  margin: .2rem 0;
+  display: inline-block;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

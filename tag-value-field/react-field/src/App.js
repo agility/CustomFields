@@ -8,6 +8,7 @@ function App() {
   const [auth, setAuth] = useState({});
   const [value, setValue] = useState("");
   const [fieldName, setFieldName] = useState("");
+  const [fieldLabel, setFieldLabel] = useState("");
   const [fieldID, setFieldID] = useState("");
   const [tagOptions, setTagOptions] = useState([]);
   const containerRef = useRef();
@@ -18,15 +19,16 @@ function App() {
       containerRef,
       //when field is ready, get the params (i.e. value and auth) from the CMS
       onReady: (params) => {
+          const value = params.fieldValue ? params.fieldValue : '[]';
           setAuth(params.auth);
-          setValue(params.fieldValue ? params.fieldValue : "");
-          setTags(JSON.parse(params.fieldValue));
+          setTags(JSON.parse(value));
           setFieldID(params.fieldID);
           setFieldName(params.fieldName);
+          setFieldLabel(params.fieldLabel);
           getSetTagOptions({ 
             guid: params.auth.guid,
-            apiKey: params.auth.apiKey,
-            contentReferenceName: params.tagsContentReferenceName,
+            apiKey: params.customProps.apiKey,
+            contentReferenceName: params.customProps.tagsContentReferenceName,
             languageCode: params.auth.languageCode
            });
       }
@@ -104,13 +106,14 @@ function App() {
 
   return (
     <div className="App" ref={containerRef}>
+      <label>{fieldLabel}</label>
       <div className="App_table__heading">
         <div className="App_table__heading__col">Value</div>
         <div className="App_table__heading__col">Tag</div>
         <div className="App_table__heading__col">Actions</div>
       </div>
       {tags.map((tag, index) => (
-        <div className="App_table__row" key={tag.tagID}>
+        <div className="App_table__row" key={index}>
           <div className="App_table__row__col">
             <input style={{display: 'block'}} type="text" value={tag.tagValue} onChange={e => updateTagValue(index, e.target.value)} />
           </div>

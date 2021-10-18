@@ -7,6 +7,8 @@
     background-color: #373939;
     color: white;
     padding: .4rem .6rem;
+    font-size: 13px;
+    margin-top: 3px;
 }
 
 .App_table__heading__col {
@@ -18,7 +20,7 @@
     align-items: center;
     justify-content: space-between;
     padding-bottom: .6rem;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid #f1f1f1;
     margin-bottom: .6rem;
 }
 
