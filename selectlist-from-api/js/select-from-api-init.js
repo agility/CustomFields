@@ -1,6 +1,9 @@
 //
 // API Item Picker
 //
+
+var baseUrl = "http://localhost:64661";
+
 var SelectListFromAPICustomField = function(){
     /// <summary>The type definition of this Agility Custom Field Type.</summary>
     var self = this;
@@ -12,7 +15,7 @@ var SelectListFromAPICustomField = function(){
     self.ReferenceName = "SelectlistFromAPI";
 
     /// <field name="Template" type="String">The partial HTML template that represents your custom field. It can be an absolute path to a URL or a reference name to an inline code file in Agility CMS. Your ViewModel will be automatically bound to this template.</field>
-    self.Template = "SelectListFromAPITemplate";
+    self.Template = baseUrl + "/html/selectlist-from-api-template.html";
 
     /// <field name="Render" type="Function">This function runs every time the field is rendered</field>
     self.Render = function(options){
@@ -49,8 +52,8 @@ var SelectListFromAPICustomField = function(){
             label: 'API Item ID',
             readOnly: false,
             value: options.fieldBinding,
-            multiple: false,
-            maximumSelectionSize: 1,
+            multiple: true,
+            maximumSelectionSize: 3,
             minimumInputLength: 0,
             placeholder: '',
             formatResult: self.formatResult,
@@ -61,24 +64,16 @@ var SelectListFromAPICustomField = function(){
             },
 
             id: function (obj) {
-                //set content of the Agility CMS Content Item
-                
-                //options.contentItem.Values.ExternalID(obj.ID)
-                //options.contentItem.Values.Title(obj.Title);
-                //options.contentItem.Values.MyField1(obj.Value1)
-                //options.contentItem.Values.MyField2(obj.Value2)
-                //etc...    		            
-                
-                //return the ID
-                return obj.ID; 
+                //save the value for each selected item with the label and id ({id}|{label}) so it can be parsed out later
+                return obj.Value + "|" + obj.Label; 
             },
 
             ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-                url: "https://{you-api-url}",
+                url: baseUrl + "/data/mockApiResponse.json",
                 dataType: 'json',
-                type: "post",
+                type: "GET",
                 quietMillis: 250,
-                originalValue: ko.unwrap(options.contentItem.Values.ExternalID()),
+                originalValue: ko.unwrap(options.fieldBinding),
                 term: "",
                 data: function (term, page, params) {
 
@@ -100,17 +95,12 @@ var SelectListFromAPICustomField = function(){
                 cache: true
             },
             initSelection: function (element, callback) {
-                var val = ko.unwrap(options.fieldBinding);
-                var label = ko.unwrap(options.contentItem.Values.Title);
-
-                if(val && label) {
-                    var data = {
-                        Value: val,
-                        Label: label
-                    };
-
-                    callback(data);
-                }
+                var data = [];
+                var ids = ko.unwrap(options.fieldBinding);
+                $(ids.split(",")).each(function () {
+                    data.push({Label: this.split("|")[1], Value: this.split("|")[0]});
+                });
+                callback(data);
             },
             allowClear: false,
             dropdownCssClass: "bigdrop"
